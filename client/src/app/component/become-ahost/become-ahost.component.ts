@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+// import { UploadService } from  '../upload.service';
+
 
 @Component({
   selector: 'app-become-ahost',
