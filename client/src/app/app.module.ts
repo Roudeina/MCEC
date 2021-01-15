@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+
+
+=======
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './component/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -19,9 +22,20 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { RegisterComponent } from './component/profile/register/register.component';
 import { BecomeAhostComponent } from './component/become-ahost/become-ahost.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+
+    RegisterComponent,
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule
+=======
     NavComponent,
     HomeComponent,
     ProfileComponent,
@@ -41,6 +55,7 @@ import { BecomeAhostComponent } from './component/become-ahost/become-ahost.comp
     MatCardModule,
     MatMenuModule,
     AppRoutingModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
