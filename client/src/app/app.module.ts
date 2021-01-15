@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {CommonModule} from '@angular/common'
 
 
 import { AppComponent } from './app.component';
@@ -25,16 +26,16 @@ import { HomeComponent } from './component/home/home.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BecomeAhostComponent } from './component/become-ahost/become-ahost.component';
 import { MaterialFileUploadComponent } from './component/become-ahost/material-file-upload/material-file-upload.component';
+import {LoginComponent} from './component/login/login.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    HomeComponent,
+
     RegisterComponent,
-    BecomeAhostComponent,
-    MaterialFileUploadComponent
+    LoginComponent
   ],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
