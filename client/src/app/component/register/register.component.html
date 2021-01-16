@@ -1,4 +1,135 @@
-<div class="container-fluid mb-5">
+<div class="col-md-12">
+    <div class="card card-container">
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+        {{ form.value | json }}
+
+      <form
+        *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="form.username"
+            required
+            minlength="3"
+            maxlength="20"
+            #username="ngModel"
+          />
+          <div class="alert-danger" *ngIf="username.errors && f.submitted">
+            <div *ngIf="username.errors.required">Username is required</div>
+            <div *ngIf="username.errors.minlength">
+              Username must be at least 3 characters
+            </div>
+            <div *ngIf="username.errors.maxlength">
+              Username must be at most 20 characters
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="form.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div class="alert-danger" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">
+              Email must be a valid email address
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="8"
+            #password="ngModel"
+          />
+          <div class="alert-danger" *ngIf="password.errors && f.submitted">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 8 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label>Age</label>
+            <input type='number' class='form-control' min='18' max='80' name="age" [(ngModel)] = "form.age"> 
+        </div>
+
+        <label>Gender</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" value="male" [(ngModel)] = "form.gender">
+              <label class="form-check-label">Male</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" value="female" [(ngModel)] = "form.gender"> 
+              <label class="form-check-label">Female</label>
+            </div>
+
+            <div class="form-group">
+                <select class="custom-select" name="nationality" [(ngModel)] = "form.nationality">
+                    <option value="default">Nationality</option>
+                    <option *ngFor="let nationality of nationalities">{{ nationality }} </option>
+                </select>
+            </div>
+    
+            
+    
+            <div class="form-group">
+                <label>Contact me on :</label>
+                <input type='text' class='form-control' name="contact" [(ngModel)] = "form.contact">
+            </div>
+    
+            <div class="form-group">
+                <label>Profile Picture</label>
+                <input type='text' class='form-control' name="picture" [(ngModel)] = "form.picture">
+            </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Sign Up</button>
+        </div>
+  
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Signup failed!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful! Login to join us!!
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- <div class="container-fluid mb-5">
     <h1>Register</h1>
     <form #userForm="ngForm" (ngSubmit)= "onSubmit()" novalidate >
 
@@ -26,7 +157,7 @@
                 <small class="text-danger"  *ngIf="password.errors.required">Password is required</small>      
                 <small class="text-danger"  *ngIf="password.errors.pattern">Password must be 8 digits</small>      
               </div> -->
-        </div>
+        <!-- </div>
 
         <div class="form-group">
             <label>Age</label>
@@ -34,7 +165,7 @@
         </div>
     
 
-        <!-- <div class="mb-3"></div> -->
+        
             <label>Gender</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="gender" value="male" [(ngModel)] = "userModel.gender">
@@ -44,7 +175,7 @@
               <input class="form-check-input" type="radio" name="gender" value="female" [(ngModel)] = "userModel.gender"> 
               <label class="form-check-label">Female</label>
             </div>
-        <!-- </div> -->
+        
 
         <div class="form-group">
             <select class="custom-select" name="nationality" [(ngModel)] = "userModel.nationality">
@@ -53,14 +184,7 @@
             </select>
         </div>
 
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="room" value="shared" [(ngModel)] = "userModel.room">
-            <label class="form-check-label">Shared Room</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="room" value="private" [(ngModel)] = "userModel.room">
-            <label class="form-check-label">Private Room</label>
-          </div>
+        
 
         <div class="form-group">
             <label>Contact me on :</label>
@@ -77,4 +201,4 @@
         <button class="btn btn-primary" type="submit">Submit</button>
 
     </form>
-</div>
+</div> --> 
