@@ -37,7 +37,7 @@ export class RegisterComponent {
     age: null,
     nationality : 'default',
     contact: null,
-    profile_picture: null
+    
   };
 
   isSuccessful = false;
@@ -50,9 +50,9 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    const { email,password,username,gender,age,nationality,contact,profile_picture } = this.form;
+    const { email,password,username,gender,age,nationality,contact } = this.form;
 
-    this.authService.register(email,password,username,gender,age,nationality,contact,profile_picture).subscribe(
+    this.authService.register(email,password,username,gender,age,nationality,contact).subscribe(
       data => {
         console.log(data);
         

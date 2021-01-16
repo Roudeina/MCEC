@@ -32,6 +32,7 @@ import { BecomeAhostComponent } from './component/become-ahost/become-ahost.comp
 import {LoginComponent} from './component/login/login.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     LoginComponent,
     BecomeAhostComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    ProfileComponent
   ],
 
   imports: [
