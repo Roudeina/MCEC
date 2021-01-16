@@ -16,7 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {CommonModule} from '@angular/common'
+import {CommonModule} from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { AppComponent } from './app.component';
@@ -25,15 +26,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './component/home/home.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BecomeAhostComponent } from './component/become-ahost/become-ahost.component';
-import { MaterialFileUploadComponent } from './component/become-ahost/material-file-upload/material-file-upload.component';
-import {LoginComponent} from './component/login/login.component'
+import { LoginComponent } from './component/login/login.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    BecomeAhostComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    NavComponent
   ],
 
   imports: [
@@ -54,7 +56,8 @@ import {LoginComponent} from './component/login/login.component'
     MatProgressBarModule,
     MatInputModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
