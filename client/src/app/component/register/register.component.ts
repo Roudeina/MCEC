@@ -1,6 +1,6 @@
-import { EnrollRegisterService } from './enroll-register.service';
 import { Component, OnInit } from '@angular/core';
-import { UserRegister } from './user-register';
+import { AuthService } from '../../_services/auth.service';
+
 
 
 @Component({
@@ -29,18 +29,42 @@ export class RegisterComponent {
   "togolese","tongan","trinidadian or tobagonian","tunisian","turkish","tuvaluan","ugandan","ukrainian","uruguayan","uzbekistani",
   "venezuelan","vietnamese","welsh","yemenite","zambian","zimbabwean"];
 
-  userModel= new UserRegister('', '', '' , 18, '', 'default', '', '', '')
+  form: any = {
+    email: null,
+    password: null,
+    username: null,
+    gender: null,
+    age: null,
+    nationality : 'default',
+    contact: null,
+    profile_picture: null
+  };
 
-  constructor(private _enrollRegisterService : EnrollRegisterService){
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
   }
 
-  onSubmit(){
-    console.log(this.userModel)
-    this._enrollRegisterService.enroll(this.userModel)
-    .subscribe(
-      data => console.log( "success" , data),
-      error => console.log ("error" , error)
-    )
+  onSubmit(): void {
+    const { email,password,username,gender,age,nationality,contact,profile_picture } = this.form;
+
+    this.authService.register(email,password,username,gender,age,nationality,contact,profile_picture).subscribe(
+      data => {
+        console.log(data);
+        
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
   }
+
 }

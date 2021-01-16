@@ -16,7 +16,10 @@ const app = express();
 // });
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78c59d855e94447ad27d7ecf89fce9c8f8298f62
 app.use(cors());
 
 // parse requests of content-type - application/json

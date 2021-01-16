@@ -1,3 +1,4 @@
+//Modules
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,23 +18,27 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {CommonModule} from '@angular/common';
+import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from '@angular/material/table';
 
 
+//Components
 import { AppComponent } from './app.component';
 import { NavComponent } from './component/nav/nav.component';
-import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './component/home/home.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BecomeAhostComponent } from './component/become-ahost/become-ahost.component';
-import { LoginComponent } from './component/login/login.component'
+
+import {LoginComponent} from './component/login/login.component';
+
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BecomeAhostComponent,
     RegisterComponent,
     LoginComponent,
+    BecomeAhostComponent,
     HomeComponent,
     NavComponent
   ],
@@ -57,9 +62,10 @@ import { LoginComponent } from './component/login/login.component'
     MatInputModule,
     MatFormFieldModule,
     HttpClientModule,
+    CommonModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
