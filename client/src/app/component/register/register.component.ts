@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -54,8 +55,10 @@ export class RegisterComponent {
     this.authService.register(email,password,username,gender,age,nationality,contact,profile_picture).subscribe(
       data => {
         console.log(data);
+        
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        
       },
       err => {
         this.errorMessage = err.error.message;
@@ -63,4 +66,5 @@ export class RegisterComponent {
       }
     );
   }
+
 }
