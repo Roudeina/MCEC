@@ -6,11 +6,12 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/home">Home</a>
-      <a mat-list-item routerLink="/register">Register</a>
-      <a mat-list-item routerLink="/login">Login</a>
-      <a mat-list-item routerLink="/profile">Profile</a>
-      <a mat-list-item routerLink="/becomeAhost">Become a host?</a>
-      <a mat-list-item href="#">Search</a>
+      <a mat-list-item   *ngIf="!isLoggedIn" routerLink="/register">Register</a>
+      <a mat-list-item   *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+      <a mat-list-item  *ngIf="isLoggedIn" (click)="logout()" >LogOut</a>
+      <a mat-list-item   *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
+      <a mat-list-item   *ngIf="isLoggedIn" routerLink="/becomeAhost">Become a host?</a>
+      <a mat-list-item *ngIf="isLoggedIn" href="#">Search</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
