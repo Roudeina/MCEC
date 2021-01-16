@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {CommonModule} from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import {MatTableModule} from '@angular/material/table';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -26,7 +28,7 @@ import { NavComponent } from './component/nav/nav.component';
 import { HomeComponent } from './component/home/home.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BecomeAhostComponent } from './component/become-ahost/become-ahost.component';
-import { MaterialFileUploadComponent } from './component/become-ahost/material-file-upload/material-file-upload.component';
+
 import {LoginComponent} from './component/login/login.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
@@ -34,7 +36,6 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    MaterialFileUploadComponent ,
     RegisterComponent,
     LoginComponent,
     BecomeAhostComponent,
@@ -61,7 +62,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     MatInputModule,
     MatFormFieldModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    MatTableModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
