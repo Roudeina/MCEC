@@ -124,7 +124,7 @@ app.post('/remove_favourite', function(request, response) {
       }
 })
     .then(()=>{
-      response.send({ message: "Contact removed successfully to favourite contacts list" })
+      response.send({ message: "Contact removed successfully from favourite contacts list" })
     })
     .catch(err => {
       response.status(500).send({ message: err.message });
