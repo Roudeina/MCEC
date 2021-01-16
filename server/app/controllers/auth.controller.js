@@ -64,7 +64,16 @@ exports.signin = (req, res) => {
         id: user.id,
         username: user.username,
         email: user.email,
-        accessToken: token
+        accessToken: token,
+        gender: user.gender,
+        age: user.age,
+        room_space: user.room_space,
+        guest_or_host: user.guest_or_host ,
+        room_picture: user.room_picture,
+        nationality : user.nationality,
+        contact: user.contact ,
+        profile_picture: user.profile_picture,
+        status: user.status
       });
     })
     .catch(err => {
