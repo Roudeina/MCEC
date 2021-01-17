@@ -16,6 +16,7 @@ export class ResOfSearchComponent implements OnInit {
 cards=[{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"}];
 model= new SearchModel([],0,0)
   ngOnInit(): void {
+    console.log('model.current page',this.model.currentPage)
     this.http.post<any>("http://localhost:8080/search",this.model.currentPage)
     .subscribe(
       (data) =>{

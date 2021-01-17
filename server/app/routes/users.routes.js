@@ -53,6 +53,7 @@ app.post("/become_a_host", (request, response) => {
 /////////////////////////////////////////////////////////////////////// search feature
 
 app.post('/search', function(request, response) {
+  console.log('/search request body',Object.entries(request.body))
   let conditions = Object.entries(request.body).filter(x=>(x[1]!=='' && x[0]!=='currentpage')) // keeping just the changed input 
   var pageNo = request.body.currentpage
 
