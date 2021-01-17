@@ -11,19 +11,22 @@ import {HostRegister} from './host-register'
 })
 export class BecomeAhostComponent {
   url='';
-  
-  hostModel= new HostRegister("",false,this.url)
+
+  hostModel= new HostRegister("","",this.url)
 
   selectFile2(event){
     if (event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0])
       reader.onload = (event : any) => {
-         this.url = event.target.result
-        console.log("azert",this.url)
+        this.url = event.target.result
+        //console.log("azert",this.url)
+        this.hostModel.image = event.target.result
+
+        //console.log(this.hostModel.image)
       }
     }
-    console.log("qsdfghj",reader.onload(event))
+    //console.log("qsdfghj",reader.onload(event))
   }
 //  openFile = function(event) {
 //     var input = event.target;
@@ -38,11 +41,11 @@ export class BecomeAhostComponent {
 //     reader.readAsDataURL(input.files[0]);
 //   };
 
-  // onFileSelected(event){
-  //   this.selectedFile=<File>event.target;
-  //   console.log('selectedFile',this.selectedFile)
-  // }
-  
+//   onFileSelected(event){
+//     this.selectedFile=<File>event.target;
+//     console.log('selectedFile',this.selectedFile)
+//   }
+
   constructor(private _http: HttpClient){}
   onSubmit(){
     console.log('data to be sent',this.hostModel)

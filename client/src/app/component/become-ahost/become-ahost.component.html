@@ -22,7 +22,8 @@
 ngModel [(ngModel)]=hostModel.image (change)="onFileSelected($event)">
 
     <img id="output" [src]='url' alt='' height="200" width="200" >
-<input type="file" required #image='ngModel' name="image" ngModel [(ngModel)]=hostModel.image (change)="selectFile2($event)">
+
+<input type="file" required  name="image"  (change)="selectFile2($event)">
 
 </div>
 <div>
