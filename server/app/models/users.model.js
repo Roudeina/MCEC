@@ -12,7 +12,10 @@ module.exports = (sequelize, Sequelize) => {
       contact: {type: Sequelize.STRING},
       profile_picture: {type: Sequelize.STRING ,defaultValue:"https://www.seekpng.com/png/detail/413-4139803_unknown-profile-profile-picture-unknown.png"},
       status: { type: Sequelize.STRING,defaultValue: 'occupied' }
-    });
+      
+    }, {
+      timestamps: false
+  });
 
     return User;
   };

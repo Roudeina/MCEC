@@ -1,5 +1,7 @@
 .grid-container {
   margin: 20px;
+  font-family: Garamond, "Helvetica Neue", sans-serif;
+  font-weight: bold
 }
 
 .dashboard-card {
@@ -8,14 +10,20 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
+  font-family: Garamond, "Helvetica Neue", sans-serif;
+  font-weight: bold
 }
 
 .more-button {
   position: absolute;
   top: 5px;
   right: 10px;
+  font-family: Garamond, "Helvetica Neue", sans-serif;
 }
 
 .dashboard-card-content {
   text-align: center;
+  font-family: Garamond, "Helvetica Neue", sans-serif;
+  font-weight: bold
 }
+body { margin: 0; font-family: Garamond, "Helvetica Neue", sans-serif; font-weight: bold}

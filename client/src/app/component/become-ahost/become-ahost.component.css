@@ -6,3 +6,4 @@
   .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+  body { margin: 0; font-family: Garamond, "Helvetica Neue", sans-serif; }
