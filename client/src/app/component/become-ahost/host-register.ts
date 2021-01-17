@@ -1,7 +1,7 @@
 export class HostRegister {
     constructor(
         public room_space: string,
-        public occupied: boolean,
+        public occupied: string,
         public image: string,
     ){}
 

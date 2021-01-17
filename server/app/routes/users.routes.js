@@ -38,7 +38,7 @@ app.post("/become_a_host", (request, response) => {
       guest_or_host:'host'},
       { where: { id: connectedId } }) //// change id value with thisUserid later
       .then(result =>{
-        response.send('update done')
+        response.send(result)
       })
       .catch(err =>{
         console.log('error')
