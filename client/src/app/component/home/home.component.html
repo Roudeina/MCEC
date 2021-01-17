@@ -1,14 +1,19 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
+  <h1 class="mat-h1">Welcome to <span>MCTC</span></h1>
+  <h5>Here is some advices to you</h5>
   <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-grid-tile *ngFor="let card of cards" [colspan]="2" [rowspan]="1">
       <mat-card class="dashboard-card">
-        <mat-card-header>
+      <mat-card-header>
           <mat-card-title>
-            {{card.title}}
+          {{card.title}}
           </mat-card-title>
-        </mat-card-header>
+      </mat-card-header><br/>
+      <mat-card-content class="dashboard-card-content">
+          <div>{{card.body}}</div><br/>
+          <div> <img src={{card.imgUrl}} width="500" height="150" ></div>
+      </mat-card-content>
       </mat-card>
-    </mat-grid-tile>
+  </mat-grid-tile>
   </mat-grid-list>
 </div>
