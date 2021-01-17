@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {CommonModule} from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 //Components
@@ -33,6 +34,9 @@ import {LoginComponent} from './component/login/login.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { ProfileComponent } from './component/profile/profile.component';
+import { FilterComponent } from './component/search/filter/filter.component';
+import { ResOfSearchComponent } from './component/search/res-of-search/res-of-search.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,9 @@ import { ProfileComponent } from './component/profile/profile.component';
     BecomeAhostComponent,
     HomeComponent,
     NavComponent,
-    ProfileComponent
+    ProfileComponent,
+    FilterComponent,
+    ResOfSearchComponent,
   ],
 
   imports: [
@@ -65,7 +71,9 @@ import { ProfileComponent } from './component/profile/profile.component';
     MatFormFieldModule,
     HttpClientModule,
     CommonModule,
-    MatTableModule
+    MatTableModule,
+    MatSlideToggleModule,
+    MatPaginatorModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

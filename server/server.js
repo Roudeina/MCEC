@@ -32,8 +32,8 @@ db.sequelize.sync()
 .then(() => {
   console.log("Database connected !")
 })
-.catch(() => {
-  console.log("error while connection to db")
+.catch((err) => {
+  console.log("error while connection to db",err)
 })
 
 

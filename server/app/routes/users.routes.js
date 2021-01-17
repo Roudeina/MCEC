@@ -33,7 +33,6 @@ app.post("/become_a_host", (request, response) => {
       status:'free',
       room_space:data.room_space,
       guest_or_host:'host'},
-     
       { where: { id: connectedId } }) //// change id value with thisUserid later
       .then(result =>{
         response.send('update done')
@@ -59,7 +58,7 @@ app.post('/search', function(request, response) {
 
    // updating the filterBy based on the conditions
 
-  let filterBy = {status : 'free'} 
+  let filterBy = {status : 'free'}
 
   for(var ele of conditions) {
     filterBy[ele[0]] = ele[1]
@@ -74,7 +73,7 @@ app.post('/search', function(request, response) {
   query.attributes = ['username','gender','age','nationality','profile_picture','room_space','contact']
   console.log(query)
 
-//////////////// return the number of documents satisfy the query  
+//////////////// return the number of documents satisfy the query
 
 db.users.findAndCountAll(query).then(data => {
       console.log('searching results')
