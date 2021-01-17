@@ -21,7 +21,7 @@ import {CommonModule} from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {MatSelectModule} from '@angular/material/select';
 
 //Components
 import { AppComponent } from './app.component';
@@ -73,7 +73,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CommonModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

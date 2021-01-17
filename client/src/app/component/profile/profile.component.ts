@@ -12,13 +12,18 @@ export class ProfileComponent implements OnInit {
   toSubmit = false;
   photo : string;
   currentUser: any;
+  url : string;
+  url2: string;
+  imgChange = false;
+  imgChange2 = false;
   
   constructor(private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser()
     console.log(this.currentUser);
-    
+    this.url = this.currentUser.profile_picture;
+    this.url2 = this.currentUser.room_picture;
   }
 
   clickEdit(){
@@ -27,8 +32,33 @@ export class ProfileComponent implements OnInit {
   }
 
   changeImg(){
-    //to verify
+    this.imgChange = true;
   }
+
+  changeImg2(){
+    this.imgChange2 = true;
+  }
+
+  selectFile(event){
+    if (event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = (event : any) => {
+        this.url = event.target.result
+      }
+    }
+  }
+
+  selectFile2(event){
+    if (event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = (event : any) => {
+        this.url2 = event.target.result
+      }
+    }
+  }
+
 
   onSubmit(): void {
 

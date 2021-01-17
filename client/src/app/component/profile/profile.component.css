@@ -35,10 +35,23 @@
     align-items: center;
 }
 
+h1{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+}
+
 img {
 	width: 250px;
 	height: 250px;
 	border-radius: 50%;
+}
+
+.room-picture {
+	width: 250px;
+	height: 250px;
+	border-radius: 15%;
 }
 
 button {
@@ -48,11 +61,13 @@ button {
 
 span {
 	width : 250px;
+	margin-left: 20px;
 }
 
 input {
 	background: none;
     outline: none;
-	width : 400px;
+	width : 300px;
 	border: none;
+	margin-right: 30px;
 }

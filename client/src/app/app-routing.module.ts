@@ -14,7 +14,8 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'profile', component: ProfileComponent},
   { path:'becomeAhost', component: BecomeAhostComponent},
-  { path:'search', component: FilterComponent}
+  { path:'search', component: FilterComponent},
+  
 ];
 
 @NgModule({
