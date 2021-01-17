@@ -17,8 +17,14 @@
 </p>
 <div style="text-align:center">
     <h3>Upload an image of your room</h3><br/>
+
+<input type="file" required #image='ngModel' name="image" 
+ngModel [(ngModel)]=hostModel.image (change)="onFileSelected($event)">
+
     <img id="output" [src]='url' alt='' height="200" width="200" >
+
 <input type="file" required  name="image"  (change)="selectFile2($event)">
+
 </div>
 <div>
     <button type="submit" [disabled]='hostForm.form.invalid' mat-raised-button color="primary">Submit</button>

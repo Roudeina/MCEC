@@ -67,7 +67,9 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     console.log("DATA Updated",this.currentUser)
+
     this.http.post<any>('http://localhost:8080/edit_profile', '{"contact":"fbbbbbb"}')
+
     .subscribe(
       data =>console.log('success',data),
       err => console.log('error!',err)
