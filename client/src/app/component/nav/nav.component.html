@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{'dark-theme-mode':isDarkTheme}">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -11,7 +11,7 @@
       <a mat-list-item  *ngIf="isLoggedIn" (click)="logout()" routerLink="/home">LogOut</a>
       <a mat-list-item   *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
       <a mat-list-item   *ngIf="isLoggedIn" routerLink="/becomeAhost">Become a host?</a>
-      <a mat-list-item *ngIf="isLoggedIn" href="#">Search</a>
+      <a mat-list-item *ngIf="isLoggedIn" href="/search">Search</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,6 +25,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>MCEC</span>
+      <span style="flex:auto;"></span>
+      <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before">
+        <mat-icon>bedtime</mat-icon>
+      </mat-slide-toggle>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

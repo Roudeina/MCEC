@@ -15,7 +15,7 @@ export class BecomeAhostComponent {
 
 
 
-  constructor(private _enrolService:EnrolService, http:HttpClient){}
+  constructor(private _enrolService:EnrolService){}
   onFileSelected(event){
     this.selectedFile=<File>event.target.files[0];
     console.log('selectedFile',this.selectedFile)
