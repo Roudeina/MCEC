@@ -6,3 +6,12 @@
   .btn{
     margin-left: 300px;
   }
+
+  .form-control {
+    
+    display: flex;
+    margin: auto;
+    width: 50%;
+  }
+
+  

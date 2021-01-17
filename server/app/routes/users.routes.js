@@ -143,4 +143,38 @@ app.post('/remove_favourite', function(request, response) {
 //         response.status(500).send({ message: err.message });
 //       })
 //   })
+
+app.post("/edit_profile", async (req, res) => {
+  // console.log("picture from ui ", req.body.profile_picture);
+  // if (req.body.profile_picture) {
+  //   const profile_picture = await cloudinary.uploader.upload(
+  //     req.body.profile_picture
+  //   );
+  // }
+  // console.log("message of profile_picture", profile_picture);
+  let arr = Object.entries(req.body);
+  let arr1 = arr.filter((el) => {
+    return (
+      el[0] == "room_space" ||
+      el[0] == "guest_or_host" || 
+      el[0] == "nationality" ||
+      el[0] == "contact" ||
+      el[0] == "status"
+    );
+  });
+  // arr1.splice(arr1.length - 2, 0, [
+  //   ["profile_picture", profile_picture.secure_url],
+  // ]);
+  let es = {};
+  arr1.forEach((element) => {
+    es[element[0]] = element[1];
+  });
+  console.log(es);
+
+  db.users.update(es, { where: { id: connectedId } });
+  res.send("message sent");
+});
+
 };
+
+

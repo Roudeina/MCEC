@@ -14,13 +14,13 @@
 
       <div class="small-container">
         <span class="span">Email</span>
-        <input type="text" placeholder="{{currentUser.email}}" [disabled]="notEdit" />
+        <input type="text" placeholder="{{currentUser.email}}" [disabled]="notEdit" [(ngModel)] ="currentUser.email" />
         <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
       </div>
 
       <div class="small-container">
         <span>Age</span>
-        <input type="number" placeholder="{{currentUser.age}}" [disabled]="notEdit" min="18" max="80" />
+        <input type="number" placeholder="{{currentUser.age}}" [disabled]="notEdit" min="18" max="80" [(ngModel)] ="currentUser.age" />
         <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
       </div>
 
@@ -32,13 +32,13 @@
 
       <div class="small-container">
         <span>Nationality</span>
-        <input type="text" placeholder="{{currentUser.nationality}}" [disabled]="notEdit" />
+        <input type="text" placeholder="{{currentUser.nationality}}" [disabled]="notEdit" [(ngModel)] ="currentUser.nationality"/>
         <button class="btn btn-primary">EDIT</button>
       </div>
 
       <div class="small-container">
         <span>Contact</span>
-        <input type="text" placeholder="{{currentUser.contact}}" [disabled]="notEdit" />
+        <input type="text" placeholder="{{currentUser.contact}}" [disabled]="notEdit" [(ngModel)] ="currentUser.contact"/>
         <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
       </div>
       <hr/>
@@ -50,7 +50,7 @@
         <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
         <mat-form-field appearance="fill" > 
           <mat-label>{{currentUser.room_space}}</mat-label>
-          <mat-select [disabled]="notEdit">
+          <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.room_space">
             <mat-option >Shared</mat-option>
             <mat-option >Private</mat-option>
           </mat-select>
@@ -63,7 +63,7 @@
         <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
         <mat-form-field appearance="fill" > 
           <mat-label>{{currentUser.status}}</mat-label>
-          <mat-select [disabled]="notEdit">
+          <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.status">
             <mat-option >Occupied</mat-option>
             <mat-option >Free</mat-option>
           </mat-select>
@@ -78,7 +78,7 @@
       </div>
 
       <div class="btnSubmit">
-        <button class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" >Update</button>
+        <button class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
       </div>
       
 </div>

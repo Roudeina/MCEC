@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../../_services/token-storage.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
+// const httpOptions = {
+//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+// };
 
 @Component({
   selector: 'app-profile',
@@ -12,12 +16,13 @@ export class ProfileComponent implements OnInit {
   toSubmit = false;
   photo : string;
   currentUser: any;
+
   url : string;
   url2: string;
   imgChange = false;
   imgChange2 = false;
   
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser()
@@ -61,7 +66,12 @@ export class ProfileComponent implements OnInit {
 
 
   onSubmit(): void {
-
+    console.log("DATA Updated",this.currentUser)
+    this.http.post<any>('http://localhost:8080/edit_profile', "{'contact': 'fb'}")
+    .subscribe(
+      data =>console.log('success',data),
+      err => console.log('error!',err)
+    )
   }
 
 }
