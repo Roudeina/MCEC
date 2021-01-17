@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit{
   isLoginFailed = false;
   errorMessage = '';
   username : string;
-  
+
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
@@ -38,10 +38,8 @@ export class LoginComponent implements OnInit{
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
-       
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        
         this.reloadPage();
       },
       err => {
@@ -54,5 +52,4 @@ export class LoginComponent implements OnInit{
   reloadPage(): void {
     window.location.reload();
   }
-  
 }

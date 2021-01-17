@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {HostRegister} from './host-register'
-import {EnrolService} from './enrol.service'
+
+
 
 @Component({
   selector: 'app-become-ahost',
@@ -9,21 +10,43 @@ import {EnrolService} from './enrol.service'
   styleUrls: ['./become-ahost.component.css']
 })
 export class BecomeAhostComponent {
-  selectedFile= File=null;
-  fd=new FormData();
-  hostModel= new HostRegister("",false,this.selectedFile)
+  url='';
+  
+  hostModel= new HostRegister("",false,this.url)
 
-
-
-  constructor(private _enrolService:EnrolService){}
-  onFileSelected(event){
-    this.selectedFile=<File>event.target.files[0];
-    console.log('selectedFile',this.selectedFile)
+  selectFile2(event){
+    if (event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = (event : any) => {
+         this.url = event.target.result
+        console.log("azert",this.url)
+      }
+    }
+    console.log("qsdfghj",reader.onload(event))
   }
+//  openFile = function(event) {
+//     var input = event.target;
+//     var url=this.url
 
+//     var reader = new FileReader();
+//     reader.onload = function(){
+//       var dataURL = reader.result;
+//       url= dataURL;
+//     };
+//     console.log('ccccccc',url)
+//     reader.readAsDataURL(input.files[0]);
+//   };
+
+  // onFileSelected(event){
+  //   this.selectedFile=<File>event.target;
+  //   console.log('selectedFile',this.selectedFile)
+  // }
+  
+  constructor(private _http: HttpClient){}
   onSubmit(){
     console.log('data to be sent',this.hostModel)
-    this._enrolService.enroll(this.hostModel)
+    this._http.post<any>('http://localhost:8080/become_a_host',this.hostModel)
     .subscribe(
       data =>console.log('success',data),
       err => console.log('error!',err)
