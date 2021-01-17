@@ -9,6 +9,6 @@ export class EnrolService {
 _url='/become_a_host'
   constructor(private _http: HttpClient) { }
   enroll(host:HostRegister){
-  return this._http.post<any>(this._url,host)
+  return this._http.post<any>('/become_a_host',host)
   }
 }

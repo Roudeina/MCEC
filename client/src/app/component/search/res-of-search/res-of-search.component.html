@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container mat-app-background">
     <h1 class="mat-h1">Result's display</h1>
     <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of cards" [colspan]="1" [rowspan]="2">
@@ -16,9 +16,9 @@
             <div>{{card.body}}</div>
             <div> <img src='https://images.all-free-download.com/images/graphiclarge/simple_room_picture_167607.jpg' height="300" ></div>
         </mat-card-content>
-        <mat-card-footer>
-        <button mat-raised-button color="primary">See reviews</button>
-        <button mat-raised-button color="primary">Add review</button>
+        <mat-card-footer style="text-align: center">
+        <button mat-raised-button color="primary" >See reviews</button>
+        <button mat-raised-button color="primary" >Add review</button>
         </mat-card-footer>
         </mat-card>
     </mat-grid-tile>
