@@ -1,9 +1,48 @@
 <div class="container" *ngIf="currentUser"> 
-    <div>when I remove the condition the profile appears, else I got an error in the console Can't bind to 'ngIf' since it isn't a known property of 'div'. </div>
-      <header class="jumbotron">
+    
+      <header class="jumborton">
         <h3>
           <strong>{{ currentUser.username}}</strong> Profile
         </h3>
       </header>
+
+      
+      <div class="photo">
+        <img src="{{currentUser.profile_picture}}" alt="ProfilePicture" />
+      </div>
+
+      <div class="small-container">
+        <span class="span">Email</span>
+        <input type="text" placeholder="{{currentUser.email}}" [disabled]="notEdit" />
+        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+      </div>
+
+      <div class="small-container">
+        <span>Age</span>
+        <input type="text" placeholder="{{currentUser.age}}" [disabled]="notEdit" />
+        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+      </div>
+
+      <div class="small-container">
+        <span>Gender</span>
+        <input type="text" placeholder="{{currentUser.gender}}" [disabled]="notEdit" />
+        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+      </div>
+
+      <div class="small-container">
+        <span>Nationality</span>
+        <input type="text" placeholder="{{currentUser.nationality}}" [disabled]="notEdit" />
+        <button class="btn btn-primary">EDIT</button>
+      </div>
+
+      <div class="small-container">
+        <span>Contact</span>
+        <input type="text" placeholder="{{currentUser.contact}}" [disabled]="notEdit" />
+        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+      </div>
+
+      <div class="btnSubmit">
+        <button class="btn btn-primary btnSubmit" *ngIf="toSubmit" >Update</button>
+      </div>
       
 </div>

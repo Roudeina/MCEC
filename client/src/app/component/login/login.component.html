@@ -4,6 +4,7 @@
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
+        novalidate
       />
       <form
         *ngIf="!isLoggedIn"
@@ -70,7 +71,7 @@
   
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ username }}.
-        <app-profile></app-profile>
+        
       </div>
     </div>
   </div>
