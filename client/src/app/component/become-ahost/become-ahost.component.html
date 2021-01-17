@@ -1,32 +1,37 @@
-<p>become-ahost works!</p>
-<hr/>
+
+<div class="container" *ngIf='show'>
+
 <form #hostForm=ngForm (ngSubmit)="onSubmit()" novalidate>
-<p style="text-align:center">
+<p >
     <label id="radio-group-label">Is your room :</label><br/>
 <mat-radio-group aria-label="Select an option" required #room_space='ngModel' name="room_space" ngModel [(ngModel)]=hostModel.room_space>
     <mat-radio-button value="shared">Shared</mat-radio-button>
     <mat-radio-button value="private">Private</mat-radio-button>
 </mat-radio-group>
 </p>
-<p style="text-align:center">
+<p >
     <label id="radio-group-label">Is your room is occupied now</label><br/>
 <mat-radio-group aria-label="Select an option" required #occupied='ngModel' name="occupied" ngModel [(ngModel)]=hostModel.occupied>
     <mat-radio-button value="occupied">Yes</mat-radio-button>
     <mat-radio-button value="free">No</mat-radio-button>
 </mat-radio-group>
 </p>
-<div style="text-align:center">
+<div >
     <h3>Upload an image of your room</h3><br/>
 
-<input type="file" required #image='ngModel' name="image" 
-ngModel [(ngModel)]=hostModel.image (change)="onFileSelected($event)">
-
-    <img id="output" [src]='url' alt='' height="200" width="200" >
-
-<input type="file" required  name="image"  (change)="selectFile2($event)">
+    <img  id="output" [src]='url' alt='' height="200" width="200"  >
+<br/>
+<input  required type="file"   name="image"  (change)="selectFile($event)">
 
 </div>
 <div>
-    <button type="submit" [disabled]='hostForm.form.invalid' mat-raised-button color="primary">Submit</button>
+    <button  type="submit" [disabled]='hostForm.form.invalid' mat-raised-button color="primary">Submit</button>
 </div>
 </form>
+</div>
+<div *ngIf="!show">
+    <div style="text-align:center">Congratulation you are from now on <span>a host</span>.
+    You can edit your profile down here</div>
+    <hr/>
+    <app-profile></app-profile>
+</div>

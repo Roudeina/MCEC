@@ -10,7 +10,7 @@ import { TokenStorageService } from '../../_services/token-storage.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  isDarkTheme: boolean = true;
+  isDarkTheme: boolean = false;
   isLoggedIn = false;
   username?: string;
 

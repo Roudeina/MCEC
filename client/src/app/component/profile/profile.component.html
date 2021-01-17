@@ -1,13 +1,13 @@
 
-<div class="container" *ngIf="currentUser"> 
+<div class="container" *ngIf="currentUser">
     
   <header class="jumborton">
     <h3>
-      <strong>{{ currentUser.username}}</strong> Profile
+      <strong>{{ currentUser.username}} 's</strong> Profile
     </h3>
   </header>
 
-  
+
   <div class="photo">
     <img [src]="url" alt="ProfilePicture" (click)="changeImg()"/>
     <input type="file" (change)="selectFile($event)" *ngIf="imgChange" />
@@ -16,13 +16,13 @@
   <div class="small-container">
     <span class="span">Email</span>
     <input type="text" placeholder="{{currentUser.email}}" [disabled]="notEdit" [(ngModel)] ="currentUser.email" />
-    <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+    <button class="btn btn-primary" color="primary" (click)="clickEdit()">EDIT</button>
   </div>
 
   <div class="small-container">
     <span>Age</span>
     <input type="number" placeholder="{{currentUser.age}}" [disabled]="notEdit" min="18" max="80" [(ngModel)] ="currentUser.age" />
-    <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+    <button color="primary" class="btn btn-primary" (click)="clickEdit()">EDIT</button>
   </div>
 
   <!-- <div class="small-container">
@@ -34,19 +34,19 @@
   <div class="small-container">
     <span>Nationality</span>
     <input type="text" placeholder="{{currentUser.nationality}}" [disabled]="notEdit" [(ngModel)] ="currentUser.nationality"/>
-    <button class="btn btn-primary">EDIT</button>
+    <button class="btn btn-primary" color="primary">EDIT</button>
   </div>
 
   <div class="small-container">
     <span>Contact</span>
     <input type="text" placeholder="{{currentUser.contact}}" [disabled]="notEdit" [(ngModel)] ="currentUser.contact"/>
-    <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+    <button class="btn btn-primary" color="primary" (click)="clickEdit()">EDIT</button>
   </div>
   <hr/>
-  <h1>Welcome as a HOST</h1>
+  <h1 *ngIf="verifyHost()">Welcome as a HOST</h1>
 
 
-  <div class="small-container" >
+  <div class="small-container" *ngIf="verifyHost()">
     <span>Room Space</span>
     <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
     <mat-form-field appearance="fill" > 
@@ -56,117 +56,28 @@
         <mat-option >Private</mat-option>
       </mat-select>
     </mat-form-field>
-    <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+    <button color="primary" class="btn btn-primary" (click)="clickEdit()">EDIT</button>
   </div>
 
-  <div class="small-container" >
+  <div class="small-container" *ngIf="verifyHost()">
     <span>Status</span>
     <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
-    <mat-form-field appearance="fill" > 
+    <mat-form-field appearance="fill" >
       <mat-label>{{currentUser.status}}</mat-label>
       <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.status">
         <mat-option >Occupied</mat-option>
         <mat-option >Free</mat-option>
       </mat-select>
     </mat-form-field>
-    <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+    <button color="primary" class="btn btn-primary" (click)="clickEdit()">EDIT</button>
   </div>
 
-  <div class="small-container">
+  <div class="small-container" *ngIf="verifyHost()">
     <span>Room Picture</span>
     <img class="room-picture" [src]="url2" alt="ProfilePicture" (click)="changeImg2()"/>
     <input type="file" (change)="selectFile2($event)" *ngIf="imgChange2" />
   </div>
 
   <div class="btnSubmit">
-    <button class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
+    <button color="primary" class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
   </div>
-  
-=======
-
-<div class="container" *ngIf="currentUser"> 
-    
-      <header class="jumborton">
-
-        <h3>
-          <strong>{{ currentUser.username}}</strong> Profile
-        </h3>
-      </header>
-
-      
-      <div class="photo">
-        <img [src]="url" alt="ProfilePicture" (click)="changeImg()"/>
-        <input type="file" (change)="selectFile($event)" *ngIf="imgChange" />
-      </div>
-
-      <div class="small-container">
-        <span class="span">Email</span>
-        <input type="text" placeholder="{{currentUser.email}}" [disabled]="notEdit" [(ngModel)] ="currentUser.email" />
-        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-      </div>
-
-      <div class="small-container">
-        <span>Age</span>
-        <input type="number" placeholder="{{currentUser.age}}" [disabled]="notEdit" min="18" max="80" [(ngModel)] ="currentUser.age" />
-        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-      </div>
-
-      <!-- <div class="small-container">
-        <span>Gender</span>
-        <input type="text" placeholder="{{currentUser.gender}}" [disabled]="notEdit" />
-        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-      </div> -->
-
-      <div class="small-container">
-        <span>Nationality</span>
-        <input type="text" placeholder="{{currentUser.nationality}}" [disabled]="notEdit" [(ngModel)] ="currentUser.nationality"/>
-        <button class="btn btn-primary">EDIT</button>
-      </div>
-
-      <div class="small-container">
-        <span>Contact</span>
-        <input type="text" placeholder="{{currentUser.contact}}" [disabled]="notEdit" [(ngModel)] ="currentUser.contact"/>
-        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-      </div>
-      <hr/>
-      <h1>Welcome as a HOST</h1>
-
-
-      <div class="small-container" >
-        <span>Room Space</span>
-        <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
-        <mat-form-field appearance="fill" > 
-          <mat-label>{{currentUser.room_space}}</mat-label>
-          <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.room_space">
-            <mat-option >Shared</mat-option>
-            <mat-option >Private</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-      </div>
-
-      <div class="small-container" >
-        <span>Status</span>
-        <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
-        <mat-form-field appearance="fill" > 
-          <mat-label>{{currentUser.status}}</mat-label>
-          <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.status">
-            <mat-option >Occupied</mat-option>
-            <mat-option >Free</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-      </div>
-
-      <div class="small-container">
-        <span>Room Picture</span>
-        <img class="room-picture" [src]="url2" alt="ProfilePicture" (click)="changeImg2()"/>
-        <input type="file" (change)="selectFile2($event)" *ngIf="imgChange2" />
-      </div>
-
-      <div class="btnSubmit">
-        <button class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
-      </div>
-      
-
-</div>

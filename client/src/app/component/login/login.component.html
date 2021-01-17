@@ -68,10 +68,10 @@
           </div>
         </div>
       </form>
-  
-      <div class="alert alert-success mat-app-background" *ngIf="isLoggedIn">
-        Logged in as {{ username }}.
-        
-      </div>
     </div>
+  </div>
+  <div class="alert alert-success mat-app-background" *ngIf="isLoggedIn">
+    Logged in as {{ username }}.
+    <hr/>
+    <app-home></app-home>
   </div>

@@ -26,7 +26,7 @@ export class FilterComponent implements OnInit {
   "spanish","sri lankan","sudanese","surinamer","swazi","swedish","swiss","syrian","taiwanese","tajik","tanzanian","thai",
   "togolese","tongan","trinidadian or tobagonian","tunisian","turkish","tuvaluan","ugandan","ukrainian","uruguayan","uzbekistani",
   "venezuelan","vietnamese","welsh","yemenite","zambian","zimbabwean"];
-  filtred= new Filter("",18,"","")
+  filtred= new Filter("","","","")
   constructor(private http: HttpClient) { }
   onSubmit(){
     console.log('data to be sent',this.filtred)

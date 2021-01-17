@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   imgChange2 = false;
 
   constructor(private token: TokenStorageService, private http: HttpClient) { }
-
+  isHost = false;
   ngOnInit(): void {
     this.currentUser = this.token.getUser()
     console.log(this.currentUser);
@@ -52,6 +52,13 @@ export class ProfileComponent implements OnInit {
         this.url = event.target.result
       }
     }
+  }
+
+  verifyHost(){
+    if (this.currentUser.guest_or_host === "host"){
+      this.isHost =true
+    }
+    return this.isHost
   }
 
   selectFile2(event){

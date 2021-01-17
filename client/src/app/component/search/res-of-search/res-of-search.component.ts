@@ -16,12 +16,12 @@ export class ResOfSearchComponent implements OnInit {
 cards=[{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"}];
 model= new SearchModel([],0,0)
   ngOnInit(): void {
-    console.log('model.current page',this.model.currentPage)
-    this.http.post<any>("http://localhost:8080/search",this.model.currentPage)
+    
+    this.http.post<any>("http://localhost:8080/search",{})
     .subscribe(
       (data) =>{
-        console.log('success is success',data);
-        this.cards=data
+        console.log('success is success successsss',data);
+        // this.cards=data
     },
       err => console.log('error is error!',err)
     )
