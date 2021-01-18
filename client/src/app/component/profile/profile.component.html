@@ -1,5 +1,5 @@
 
-<div class="container" *ngIf="currentUser">
+<div class="container" *ngIf="currentUser ">
     
   <header class="jumborton">
     <h3>
@@ -81,3 +81,5 @@
   <div class="btnSubmit">
     <button color="primary" class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
   </div>
+  <div *ngIf='show' style="text-align: center; color: grey;"> You Edit your profile succesfully</div>
+</div>

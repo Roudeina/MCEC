@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private token: TokenStorageService, private http: HttpClient) { }
   isHost = false;
+  show=false
   ngOnInit(): void {
     this.currentUser = this.token.getUser()
     console.log(this.currentUser);
@@ -81,6 +82,8 @@ export class ProfileComponent implements OnInit {
       data =>console.log('success',data),
       err => console.log('error!',err)
     )
+    this.show=true
+    console.log('azerty',this.show)
   }
 
 }

@@ -29,7 +29,7 @@ export class FilterComponent implements OnInit {
   filtred= new Filter("","","","")
   constructor(private http: HttpClient) { }
   onSubmit(){
-    console.log('data to be sent',this.filtred)
+    console.log('data to be sent from filter',this.filtred)
     this.http.post<any>("http://localhost:8080/search",this.filtred)
     .subscribe(
         data =>console.log('success',data),

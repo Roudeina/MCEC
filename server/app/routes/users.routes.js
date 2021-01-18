@@ -61,7 +61,7 @@ app.post('/search', function(request, response) {
   let conditions = Object.entries(request.body).filter(x=>(x[1]!=='')) // keeping just the changed input 
    // updating the filterBy based on the conditions
 
-  let filterBy = {status : 'free'}
+  let filterBy = {status : 'occupied'}
 
   for(var ele of conditions) {
     filterBy[ele[0]] = ele[1]
@@ -71,13 +71,13 @@ app.post('/search', function(request, response) {
 
   query.where = filterBy
   query.attributes = ['username','gender','age','nationality','profile_picture','room_space','contact']
-  console.log(query)
+  console.log("query.attributes",query.attributes)
 
 
 //////////////// return the number of documents satisfy the query
 
 db.users.findAndCountAll(query).then(data => {
-      console.log('searching results')
+      console.log('searching results',data)
       response.send(data)
     }).catch(err => {
       console.log('searching failed')

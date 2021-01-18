@@ -1,11 +1,11 @@
-<div class="grid-container mat-app-background">
+<div class="grid-container mat-app-background" >
     <h1 class="mat-h1">Result's display</h1>
     <mat-grid-list cols="2" rowHeight="350px">
-        <mat-grid-tile *ngFor="let card of cards" [colspan]="1" [rowspan]="2">
+        <mat-grid-tile *ngFor="let card of cardss " [colspan]="1" [rowspan]="2">
         <mat-card class="dashboard-card">
         <mat-card-header>
             <mat-card-title>
-            {{card.title}}
+            {{card.username}}
             <span style="flex:auto;"></span>
             <button mat-icon-button color="warn" aria-label="heart icon">
                 <mat-icon>favorite</mat-icon>
@@ -13,7 +13,13 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-            <div>{{card.body}}</div>
+            <div>
+                <p>Gender: {{card.gender}}</p>
+                <p>Age: {{card.age}}</p>
+                <p>Nationality: {{card.nationality}}</p>
+                <p>Room space:{{card.room_space}}</p>
+                <p>Contact:{{card.contact}}</p>
+            </div>
             <div> <img src='https://images.all-free-download.com/images/graphiclarge/simple_room_picture_167607.jpg' height="300" ></div>
         </mat-card-content>
         <mat-card-footer style="text-align: center">
@@ -25,8 +31,16 @@
     </mat-grid-list>
 </div>
 <div class="paginator">
-    <mat-paginator [length]="50"
-    [pageSize]="5"
-    [pageSizeOptions]="[5, 10, 15, 20]">
-    </mat-paginator>
+    <mat-paginator [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = $event">
+</mat-paginator>
+
+<div *ngIf="pageEvent">
+<h5>Page Change Event Properties</h5>
+<div>List length: {{pageEvent.length}}</div>
+<div>Page size: {{pageEvent.pageSize}}</div>
+<div>Page index: {{pageEvent.pageIndex}}</div>
+</div>
 </div>
