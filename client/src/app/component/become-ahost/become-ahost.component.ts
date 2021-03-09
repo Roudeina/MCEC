@@ -19,19 +19,23 @@ export class BecomeAhostComponent  {
 
 
 
+
+
+
+
+
+
+  
+
   selectFile(event){
     if (event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0])
       reader.onload = (event : any) => {
         this.url = event.target.result
-        //console.log("azert",this.url)
         this.hostModel.image = event.target.result
-
-        //console.log(this.hostModel.image)
       }
     }
-    //console.log("qsdfghj",reader.onload(event))
   }
 
   constructor(private _http: HttpClient, private token: TokenStorageService){}

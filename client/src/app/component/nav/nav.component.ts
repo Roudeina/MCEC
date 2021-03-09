@@ -13,6 +13,7 @@ export class NavComponent {
   isDarkTheme: boolean = false;
   isLoggedIn = false;
   username?: string;
+  imageUrl:any = "src/assets/img/MiCasaEstuCasa.png";
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

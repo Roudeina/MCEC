@@ -76,7 +76,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatTableModule,
     MatSlideToggleModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+  MatToolbarModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
