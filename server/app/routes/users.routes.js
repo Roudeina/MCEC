@@ -164,7 +164,7 @@ app.post('/display_favourite', function(request, response) {
 //////////////////////////////////////////////////////////
 
 app.post("/edit_profile", async (req, res) => {
-  // console.log("picture from ui ", req.body.profile_picture);
+  console.log("picture from ui ", req.body.profile_picture);
   // if (req.body.profile_picture) {
   //   const profile_picture = await cloudinary.uploader.upload(
   //     req.body.profile_picture
