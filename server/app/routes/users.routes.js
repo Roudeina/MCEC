@@ -1,5 +1,4 @@
 const db = require("../models");
-//const connectedUser = require('../controllers/auth.controller')
 const cloudinary = require("cloudinary").v2;
 
 // cloudinary configuration
@@ -24,12 +23,12 @@ app.post("/become_a_host", (request, response) => {
     guest_or_host:request.body.host
   }
   //console.log('connected user: ',connectedId)
-  console.log('post request sent to cloudinary')
-  console.log('data.image here',data.image)
+  //console.log('post request sent to cloudinary')
+ // console.log('data.image here',data.image)
   // upload image here
   cloudinary.uploader.upload(data.image)
   .then((image) => {
-    console.log('cloudinary stored it successfully')
+    //console.log('cloudinary stored it successfully')
 ////////////// console.log the loged in user id
     db.users.update(
       {room_picture: image.secure_url,
@@ -57,7 +56,7 @@ app.post("/become_a_host", (request, response) => {
 
 app.post('/search', function(request, response) {
 
-  console.log('/search request body',Object.entries(request.body))
+ // console.log('/search request body',Object.entries(request.body))
   let conditions = Object.entries(request.body).filter(x=>(x[1]!=='')) // keeping just the changed input 
    // updating the filterBy based on the conditions
 
@@ -70,19 +69,34 @@ app.post('/search', function(request, response) {
   let query = {}
 
   query.where = filterBy
-  query.attributes = ['username','gender','age','nationality','profile_picture','room_space','contact']
-  console.log("query.attributes",query.attributes)
+  query.attributes = ['id','username','gender','age','nationality','profile_picture','room_space','contact','room_picture']
+ // console.log("query.attributes",query.attributes)
 
 
 //////////////// return the number of documents satisfy the query
 
 db.users.findAndCountAll(query).then(data => {
-      console.log('searching results',data)
+     // console.log('searching results',data)
       response.send(data)
     }).catch(err => {
-      console.log('searching failed')
+     // console.log('searching failed')
       response.send(err)
     });
+  })
+  /////////////////////////////////////////////////////////////////////////
+  app.post('/current_user', function(request, response) {
+//console.log('req',request.body)    
+    
+    
+    const project =  db.users.findOne({ where: {email:request.body.email} })
+    .then(data => {
+      //console.log('current_user',data)
+      response.send(data)
+    }).catch(err => {
+     // console.log('searching failed')
+      response.send(err)
+    });
+
   })
 
 /////////////////////////////////////////////////////////////////////// add a contact to the favourite contacts list 
@@ -90,14 +104,15 @@ db.users.findAndCountAll(query).then(data => {
 app.post('/add_favourite', function(request, response) {
 
   const favouriteUser = {
-    id : request.body.favouriteUserId
+    userId : request.body.userId,
+    favourite_user_id:request.body.favId
   }
-  console.log('connectedId: ',connectedId)
-  console.log('favourite host: ',favouriteUser.id)
+  console.log('connectedId: ',favouriteUser.userId)
+  console.log('favourite host: ',favouriteUser.favourite_user_id)
 
   db.favourite_hosts.create({
-    user_id: connectedId,
-    favourite_user_id : favouriteUser.id
+    user_id: favouriteUser.userId,
+    favourite_user_id : favouriteUser.favourite_user_id
   })
     .then(()=>{
       response.send({ message: "Contact added successfully to favourite contacts list" })
@@ -133,17 +148,20 @@ app.post('/remove_favourite', function(request, response) {
 
 /////////////////////////////////////////////////////////////////////// display favourite contacts list 
 
-// app.post('/display_favourite', function(request, response) {
-//   console.log('connectedId: ',connectedId)
-//   let queryStr = 'SELECT * FROM users WHERE age = 25'
-//   db.sequelize.query(queryStr)
-//   .then((res)=>{
-//         response.send({ queryResult:res[0],message: "query done" })
-//       })
-//       .catch(err => {
-//         response.status(500).send({ message: err.message });
-//       })
-//   })
+app.post('/display_favourite', function(request, response) {
+  console.log('connectedId: ',request.body.currentId)
+  let queryStr = 'SELECT * FROM users WHERE age = 25'
+  db.favourite_hosts.findAll({ where: {user_id:request.body.currentId} })
+  .then((res)=>{
+    console.log('favvvvvvvvvv',res)
+        response.send(res)
+      })
+  .catch(err => {
+        response.status(500).send({ message: err.message });
+      })
+  })
+
+//////////////////////////////////////////////////////////
 
 app.post("/edit_profile", async (req, res) => {
   // console.log("picture from ui ", req.body.profile_picture);
@@ -170,7 +188,7 @@ app.post("/edit_profile", async (req, res) => {
   arr1.forEach((element) => {
     es[element[0]] = element[1];
   });
-  console.log(es);
+  //console.log(es);
 
   db.users.update(es, { where: { id: connectedId } });
   res.send("message sent");

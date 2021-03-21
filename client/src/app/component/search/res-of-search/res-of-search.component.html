@@ -1,46 +1,53 @@
-<div class="grid-container mat-app-background" >
-    <h1 class="mat-h1">Result's display</h1>
-    <mat-grid-list cols="2" rowHeight="350px">
-        <mat-grid-tile *ngFor="let card of cardss " [colspan]="1" [rowspan]="2">
-        <mat-card class="dashboard-card">
+<div class="grid-container mat-app-background">
+  <h1 class="mat-h1 text-center">Result's display</h1>
+  <mat-grid-list cols="3" rowHeight="350px">
+    <mat-grid-tile
+      *ngFor="let card of cardss; let index = index"
+      [colspan]="1"
+      [rowspan]="2"
+    >
+      <mat-card class="dashboard-card">
         <mat-card-header>
-            <mat-card-title>
-            {{card.username}}
-            <span style="flex:auto;"></span>
-            <button mat-icon-button color="warn" aria-label="heart icon">
-                <mat-icon>favorite</mat-icon>
-            </button>
-            </mat-card-title>
+          <span style="flex: auto"></span>
+          <mat-card-title>
+            <img
+              class="img-thumbnail img-fluid rounded"
+              style="max-height: 100px; min-height: 100px"
+              src="{{ card.profile_picture }}"
+            />
+            {{ card.username }}
+          </mat-card-title>
+          <span style="flex: auto"></span>
+          <button
+            class="pull-right"
+            mat-icon-button
+            color="warn"
+            aria-label="heart icon"
+            (click)="addFav($event, index)"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <div *ngIf="clicked[index]" style="text-align: center; color: grey">
+            Added to favorites
+          </div>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-            <div>
-                <p>Gender: {{card.gender}}</p>
-                <p>Age: {{card.age}}</p>
-                <p>Nationality: {{card.nationality}}</p>
-                <p>Room space:{{card.room_space}}</p>
-                <p>Contact:{{card.contact}}</p>
-            </div>
-            <div> <img src='https://images.all-free-download.com/images/graphiclarge/simple_room_picture_167607.jpg' height="300" ></div>
+          <div style="font-size: larger" class="text-center">
+            <p><strong>Gender: </strong>{{ card.gender }}</p>
+            <p><strong>Age: </strong> {{ card.age }}</p>
+            <p><strong>Nationality: </strong> {{ card.nationality }}</p>
+            <p><strong>Room space: </strong>{{ card.room_space }}</p>
+            <p><strong>Contact: </strong>{{ card.contact }}</p>
+          </div>
+          <div>
+            <img
+              class="img-fluid"
+              src="{{ card.room_picture }}"
+              style="max-height: 300px; min-height: 300px"
+            />
+          </div>
         </mat-card-content>
-        <mat-card-footer style="text-align: center">
-        <button mat-raised-button color="primary" >See reviews</button>
-        <button mat-raised-button color="primary" >Add review</button>
-        </mat-card-footer>
-        </mat-card>
+      </mat-card>
     </mat-grid-tile>
-    </mat-grid-list>
-</div>
-<div class="paginator">
-    <mat-paginator [length]="length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-    (page)="pageEvent = $event">
-</mat-paginator>
-
-<div *ngIf="pageEvent">
-<h5>Page Change Event Properties</h5>
-<div>List length: {{pageEvent.length}}</div>
-<div>Page size: {{pageEvent.pageSize}}</div>
-<div>Page index: {{pageEvent.pageIndex}}</div>
-</div>
+  </mat-grid-list>
 </div>

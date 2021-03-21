@@ -31,7 +31,7 @@ import { NavComponent } from './component/nav/nav.component';
 import { HomeComponent } from './component/home/home.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BecomeAhostComponent } from './component/become-ahost/become-ahost.component';
-
+import { SearchPipe } from './component/pipe/search.pipe';
 import {LoginComponent} from './component/login/login.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
@@ -51,6 +51,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ProfileComponent,
     FilterComponent,
     ResOfSearchComponent,
+    SearchPipe
   ],
 
   imports: [

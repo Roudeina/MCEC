@@ -26,6 +26,7 @@ export class ResOfSearchComponent implements OnInit {
 
   constructor(private  http: HttpClient) { }
   cardss=[]
+  clicked:{ [key: number]: boolean } = {};
 // cards=[{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"},{title:"this is the title",body:"this is the body",image:"this is the image"}];
 model= new SearchModel([],0,0)
   ngOnInit(): void {
@@ -39,5 +40,17 @@ model= new SearchModel([],0,0)
     },
       err => console.log('error azertyuio is error!',err)
     )
+  }
+
+  addFav(event: any, index: number){
+  this.http.post<any>("http://localhost:8080/add_favourite",{})
+  .subscribe(
+    (data) =>{
+
+this.clicked[index] = true;
+console.log('add to fav',this.clicked[index])
+  },
+    err => console.log('error azertyuio is error!',err)
+  )
   }
 }

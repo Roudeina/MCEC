@@ -1,39 +1,152 @@
-<div class="content mat-app-background">Filter by preferences!</div>
-<form name="form" #filter="ngForm" novalidate (ngSubmit)="onSubmit()">
-<div class="gender" style="margin-left: 300px;">
-<label>Filter by gender:</label>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="gender" value="male" #gender='ngModel' ngModel [(ngModel)] = "filtred.gender">
-  <label class="form-check-label">Male</label>
+<div class="card mx-auto mt-3" style="max-width: 900px">
+  <div class="card-header text-center">Filter by preferences!</div>
+  <form
+    name="form"
+    class="mt-2 mr-4"
+    #filter="ngForm"
+    novalidate
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="row">
+      <div class="col-6">
+        <label class="ml-5" id="radio-group-label">Filter by gender:</label>
+      </div>
+      <div class="col-6">
+        <mat-radio-group
+          aria-label="Select an option"
+          name="gender"
+          #gender="ngModel"
+          ngModel
+          [(ngModel)]="filtred.gender"
+        >
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6"><label class="ml-5">Filter by age:</label><br /></div>
+      <div class="col-6">
+        <select
+          class="form-select form-select-sm"
+          aria-label=".form-select-sm example"
+          name="age"
+          #age="ngModel"
+          ngModel
+          [(ngModel)]="filtred.age"
+        >
+          <option *ngFor="let age of ages">
+            {{ age }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <label class="ml-5" id="radio-group-label"
+          >Filter by room space type:</label
+        >
+      </div>
+      <div class="col-6">
+        <mat-radio-group
+          aria-label="Select an option"
+          name="room_space"
+          #room_space="ngModel"
+          ngModel
+          [(ngModel)]="filtred.room_space"
+        >
+          <mat-radio-button value="shared">Shared</mat-radio-button>
+          <mat-radio-button value="private">Private</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <label class="ml-5">Filter by host nationality:</label><br />
+      </div>
+      <div class="col-6">
+        <select
+          class="form-select form-select-sm"
+          aria-label=".form-select-sm example"
+          name="nationality"
+          #nationality="ngModel"
+          ngModel
+          [(ngModel)]="filtred.nationality"
+        >
+          <option *ngFor="let nationality of nationalities">
+            {{ nationality }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group mt-1 mx-auto">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        style="margin-left: 300px"
+      >
+        Display Filter Results
+      </button>
+    </div>
+  </form>
 </div>
-<div class="form-check" >
-  <input class="form-check-input" type="radio" name="gender" value="female" #gender='ngModel' ngModel [(ngModel)] = "filtred.gender">
-  <label class="form-check-label">Female</label>
+<hr />
+<div class="grid-container mat-app-background">
+  <h1 class="mat-h1 text-center">Result's display</h1>
+  <mat-grid-list cols="3" rowHeight="350px">
+    <mat-grid-tile
+      *ngFor="let card of cardss; let index = index"
+      [colspan]="1"
+      [rowspan]="2"
+    >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <span style="flex: auto"></span>
+          <mat-card-title>
+            <img
+              class="img-thumbnail img-fluid rounded"
+              style="max-height: 100px; min-height: 100px"
+              src="{{ card.profile_picture }}"
+            />
+            {{ card.username }}
+          </mat-card-title>
+          <span style="flex: auto"></span>
+          <button
+            class="pull-right"
+            mat-icon-button
+            color="warn"
+            aria-label="heart icon"
+            (click)="addFav($event, index)"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <div *ngIf="clicked[index]"  style="text-align: center; color: palevioletred">
+            Added to favorites
+          </div>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div style="font-size: larger" class="text-center">
+            <p><strong>Gender: </strong>{{ card.gender }}</p>
+            <p><strong>Age: </strong> {{ card.age }}</p>
+            <p><strong>Nationality: </strong> {{ card.nationality }}</p>
+            <p><strong>Room space: </strong>{{ card.room_space }}</p>
+            <p><strong>Contact: </strong>{{ card.contact }}</p>
+          </div>
+          <div>
+            <img
+              class="img-fluid"
+              src="{{ card.room_picture }}"
+              style="max-height: 300px; min-height: 300px"
+            />
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
 
-</div>
-<div class="age">
-  <label style="margin-left: 300px;">Filter by age:</label><br/>
-  <input type='number' class='form-control' min='18' max='80' name="age" #age='ngModel' ngModel [(ngModel)] = "filtred.age">
-</div>
-<div class="spaceType" style="margin-left: 300px;">
-  <label id="radio-group-label">Filter by room space type:</label><br/>
-  <mat-radio-group  aria-label="Select an option" name="room_space" #room_space='ngModel' ngModel [(ngModel)]="filtred.room_space">
-      <mat-radio-button  value="shared">Shared</mat-radio-button>
-      <mat-radio-button value="private">Private</mat-radio-button>
-    </mat-radio-group>
-</div>
-<div class="form-group" style="margin-left: 300px;">
-  <label >
-    Filter by host nationality:</label><br/>
-  <select class="custom-select" name="nationality" #nationality='ngModel' ngModel [(ngModel)] = "filtred.nationality">
-      <option value="default">Nationality</option>
-      <option *ngFor="let nationality of nationalities">{{ nationality }} </option>
-  </select>
-</div>
-<div class="form-group">
-  <button type="submit" mat-raised-button color="primary" style="margin-left: 300px">Display Filter Results</button>
-</div>
-</form>
-<hr/>
-<app-res-of-search></app-res-of-search>

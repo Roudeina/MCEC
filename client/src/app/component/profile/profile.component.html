@@ -1,16 +1,14 @@
 
-<div class="container" *ngIf="currentUser ">
-    
-  <header class="jumborton">
-    <h3>
-      <strong>{{ currentUser.username}} 's</strong> Profile
-    </h3>
-  </header>
+<div class="card mx-auto mt-3" style="max-width: 1200px" *ngIf="currentUser ">
+  <div class="card-header text-center mb-4"> <strong>{{ currentUser.username}} </strong>'s Profile</div>
 
 
-  <div class="photo">
-    <img [src]="url" alt="ProfilePicture" (click)="changeImg()"/>
-    <input type="file" (change)="selectFile($event)" *ngIf="imgChange" />
+
+
+  <div class='text-center'>
+    <img [src]="url" alt="ProfilePicture" class="card-img-top" (click)="changeImg()"/>
+    <input         
+    type="file" (change)="selectFile($event)" *ngIf="imgChange" />
   </div>
 
   <div class="small-container">
@@ -78,8 +76,8 @@
     <input type="file" (change)="selectFile2($event)" *ngIf="imgChange2" />
   </div>
 
-  <div class="btnSubmit">
-    <button color="primary" class="btn btn-primary btnSubmit" *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
+  <div class="card-footer mt-2 mb-2 mx-auto text-center">
+    <button color="primary" class="btn btn-primary " *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
   </div>
   <div *ngIf='show' style="text-align: center; color: grey;"> You Edit your profile succesfully</div>
 </div>

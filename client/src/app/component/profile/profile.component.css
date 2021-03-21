@@ -20,7 +20,7 @@
  .small-container {
 	display: flex;
 	justify-content: space-around;
-	padding: 20px;
+	padding: 10px;
 	
 } 
 
@@ -30,11 +30,11 @@
     align-items: center;
 }
 
-.btnSubmit {
+/* .btnSubmit {
 	display: flex;
 	justify-content: center;
     align-items: center;
-}
+} */
 
 h1{
 	display: flex;
@@ -55,10 +55,10 @@ img {
 	border-radius: 15%;
 }
 
-button {
+/* button {
 	padding: 5px;
 	width: 60px;
-}
+} */
 
 span {
 	width : 250px;
@@ -68,9 +68,9 @@ span {
 input {
 	background: none;
     outline: none;
-	width : 300px;
-	border: none;
-	margin-right: 30px;
+	width : 350px;
+	border: black;
+	margin-right: 10px;
 }
 
 body { margin: 0; font-family: Garamond, "Helvetica Neue", sans-serif; }

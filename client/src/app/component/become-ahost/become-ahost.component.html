@@ -1,37 +1,90 @@
+<div class="card mx-auto mt-3" style="max-width: 900px">
+    <div class="card-header text-center">Filter By Preferences!</div>
+    <form
+      name="form"
+      class="mt-2 mr-4"
+      #hostForm=ngForm (ngSubmit)="onSubmit()" novalidate
+    >
+      <div class="row">
+        <div class="col-6">
+          <label class="ml-3" id="radio-group-label">Is your room : </label>
+        </div>
+        <div class="col-6">
+          <mat-radio-group
+            aria-label="Select an option"
+            required
+            #room_space="ngModel"
+            name="room_space"
+            ngModel
+            [(ngModel)]="hostModel.room_space"
+          >
+            <mat-radio-button value="shared">Shared</mat-radio-button>
+            <mat-radio-button value="private">Private</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
 
-<div class="container" *ngIf='show'>
+      
+  
+      <div class="row">
+        <div class="col-6">
+          <label class="ml-3" id="radio-group-label"
+            >Is your room is occupied now?</label
+          >
+        </div>
+        <div class="col-6">
+          <mat-radio-group
+            aria-label="Select an option"
+            required
+            #occupied="ngModel"
+            name="occupied"
+            ngModel
+            [(ngModel)]="hostModel.occupied"
+          >
+            <mat-radio-button value="occupied">Yes</mat-radio-button>
+            <mat-radio-button value="free">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-6">
+          <label class="ml-3" id="radio-group-label"
+            >Image of your room ?</label
+          >
 
-<form #hostForm=ngForm (ngSubmit)="onSubmit()" novalidate>
-<p >
-    <label id="radio-group-label">Is your room :</label><br/>
-<mat-radio-group aria-label="Select an option" required #room_space='ngModel' name="room_space" ngModel [(ngModel)]=hostModel.room_space>
-    <mat-radio-button value="shared">Shared</mat-radio-button>
-    <mat-radio-button value="private">Private</mat-radio-button>
-</mat-radio-group>
-</p>
-<p >
-    <label id="radio-group-label">Is your room is occupied now</label><br/>
-<mat-radio-group aria-label="Select an option" required #occupied='ngModel' name="occupied" ngModel [(ngModel)]=hostModel.occupied>
-    <mat-radio-button value="occupied">Yes</mat-radio-button>
-    <mat-radio-button value="free">No</mat-radio-button>
-</mat-radio-group>
-</p>
-<div >
-    <h3>Upload an image of your room</h3><br/>
+        </div>
+        
+        <div class="col-6">
 
-    <img  id="output" [src]='url' alt='' height="200" width="200"  >
-<br/>
-<input  required type="file"   name="image"  (change)="selectFile($event)">
-
-</div>
-<div>
-    <button  type="submit" [disabled]='hostForm.form.invalid' mat-raised-button color="primary">Submit</button>
-</div>
-</form>
-</div>
-<div *ngIf="!show">
-    <div style="text-align:center">Congratulation you are from now on <span>a host</span>.
-    You can edit your profile down here</div>
-    <hr/>
-    <app-profile></app-profile>
-</div>
+          <input
+          class="form-control form-control-sm"
+            required
+            type="file"
+            name="image"
+            (change)="selectFile($event)"
+          />
+        </div>
+        <div class="text-center">
+            <img class="img-fluid mx-auto d-block" id="output" [src]="url" alt="" height="200" width="200" />
+          </div>
+      </div>
+  
+      <div class="card-footer mt-1 mx-auto text-center">
+        <button
+        class="btn btn-primary"
+          type="submit"
+          [disabled]="hostForm.form.invalid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+    <div *ngIf="!show">
+        <div style="text-align: center">
+          Congratulation you are from now on <span>a host</span>. You can edit your
+          profile down  <a href="profile">here</a>
+        </div>
+      </div>
+      
+  </div>
