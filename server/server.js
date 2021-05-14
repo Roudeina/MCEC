@@ -22,14 +22,8 @@ db.sequelize.sync()
 })
 
 
-
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
-// //////
-
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to 'mi casa es tu casa' application. \n this is a GET route for test" });
+  res.json({ message: "Welcome to 'mi casa es tu casa' application.This is a GET route for test" });
 });
 
 
