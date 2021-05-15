@@ -22,20 +22,16 @@ app.post("/become_a_host", (request, response) => {
     status: request.body.occupied,
     guest_or_host:request.body.host
   }
-  //console.log('connected user: ',connectedId)
-  //console.log('post request sent to cloudinary')
- // console.log('data.image here',data.image)
-  // upload image here
+
   cloudinary.uploader.upload(data.image)
   .then((image) => {
-    //console.log('cloudinary stored it successfully')
-////////////// console.log the loged in user id
+
     db.users.update(
       {room_picture: image.secure_url,
       status:data.status,
       room_space:data.room_space,
       guest_or_host:'host'},
-      { where: { id: connectedId } }) //// change id value with thisUserid later
+      { where: { id: connectedId } }) 
       .then(result =>{
         response.send(result)
       })
@@ -107,8 +103,6 @@ app.post('/add_favourite', function(request, response) {
     userId : request.body.userId,
     favourite_user_id:request.body.favId
   }
-  console.log('connectedId: ',favouriteUser.userId)
-  console.log('favourite host: ',favouriteUser.favourite_user_id)
 
   db.favourite_hosts.create({
     user_id: favouriteUser.userId,
