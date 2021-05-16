@@ -1,8 +1,8 @@
-<div class="card mx-auto mt-3" style="max-width: 900px">
-  <div class="card-header text-center">Filter by preferences!</div>
+<mat-card class=" mx-auto mt-3 " style="width: 90%;" >
+  <div class="card-header text-center headerI">Filter by preferences!</div>
   <form
     name="form"
-    class="mt-2 mr-4"
+    class="mt-2 mr-4 allCard"
     #filter="ngForm"
     novalidate
     (ngSubmit)="onSubmit()"
@@ -19,8 +19,8 @@
           ngModel
           [(ngModel)]="filtred.gender"
         >
-          <mat-radio-button value="male">Male</mat-radio-button>
-          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="male" class="allCard">Male</mat-radio-button>
+          <mat-radio-button value="female" class="allCard">Female</mat-radio-button>
         </mat-radio-group>
       </div>
     </div>
@@ -36,6 +36,7 @@
           ngModel
           [(ngModel)]="filtred.age"
         >
+        <option selected > Select Your Age</option>
           <option *ngFor="let age of ages">
             {{ age }}
           </option>
@@ -57,25 +58,27 @@
           ngModel
           [(ngModel)]="filtred.room_space"
         >
-          <mat-radio-button value="shared">Shared</mat-radio-button>
-          <mat-radio-button value="private">Private</mat-radio-button>
+          <mat-radio-button value="shared" class="allCard">Shared</mat-radio-button>
+          <mat-radio-button value="private" class="allCard">Private</mat-radio-button>
         </mat-radio-group>
       </div>
     </div>
 
     <div class="row">
       <div class="col-6">
+
         <label class="ml-5">Filter by host nationality:</label><br />
       </div>
       <div class="col-6">
         <select
-          class="form-select form-select-sm"
+          class="form-select form-select-sm "
           aria-label=".form-select-sm example"
           name="nationality"
           #nationality="ngModel"
           ngModel
           [(ngModel)]="filtred.nationality"
         >
+        <option selected > Select Your Nationality</option>
           <option *ngFor="let nationality of nationalities">
             {{ nationality }}
           </option>
@@ -83,23 +86,24 @@
       </div>
     </div>
 
-    <div class="form-group mt-1 mx-auto">
+    <mat-card-actions  class=" mt-1 mx-auto text-center">
       <button
         type="submit"
         mat-raised-button
         color="primary"
-        style="margin-left: 300px"
+       class="allCard btn"
       >
         Display Filter Results
       </button>
-    </div>
+    </mat-card-actions>
   </form>
-</div>
+</mat-card>
 <hr />
-<div class="grid-container mat-app-background">
-  <h1 class="mat-h1 text-center">Result's display</h1>
-  <mat-grid-list cols="3" rowHeight="350px">
+<mat-card class=" mx-auto mt-2 " style="width: 90%;">
+  <div class="card-header text-center headerI">Available Rooms</div>
+  <mat-grid-list cols="4" rowHeight="350px">
     <mat-grid-tile
+    
       *ngFor="let card of cardss; let index = index"
       [colspan]="1"
       [rowspan]="2"
@@ -109,11 +113,11 @@
           <span style="flex: auto"></span>
           <mat-card-title>
             <img
-              class="img-thumbnail img-fluid rounded"
+              class="img-thumbnail img-fluid rounded "
               style="max-height: 100px; min-height: 100px"
               src="{{ card.profile_picture }}"
             />
-            {{ card.username }}
+           <div class="allCard">{{ card.username }}</div> 
           </mat-card-title>
           <span style="flex: auto"></span>
           <button
@@ -125,28 +129,29 @@
           >
             <mat-icon>favorite</mat-icon>
           </button>
-          <div *ngIf="clicked[index]"  style="text-align: center; color: palevioletred">
+          <div class="allCard" *ngIf="clicked[index]"  style="text-align: center; color: palevioletred; font-size: xx-small;">
             Added to favorites
           </div>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div style="font-size: larger" class="text-center">
+          <div style="font-size: larger" class=" allCard">
             <p><strong>Gender: </strong>{{ card.gender }}</p>
             <p><strong>Age: </strong> {{ card.age }}</p>
             <p><strong>Nationality: </strong> {{ card.nationality }}</p>
             <p><strong>Room space: </strong>{{ card.room_space }}</p>
             <p><strong>Contact: </strong>{{ card.contact }}</p>
           </div>
-          <div>
+          <div class="text-center">
             <img
-              class="img-fluid"
+            mat-card-lg-image 
+              class="img-fluid "
               src="{{ card.room_picture }}"
-              style="max-height: 300px; min-height: 300px"
+              style="max-height: 250px; max-width: 450px"
             />
           </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-</div>
+</mat-card>
 

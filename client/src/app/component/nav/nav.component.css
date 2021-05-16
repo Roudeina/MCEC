@@ -15,4 +15,28 @@
   top: 0;
   z-index: 1;
 }
-body { font-family: Garamond, "Helvetica Neue", sans-serif; }
+.allCard{
+	font-family: 'Galdeano', sans-serif;
+	font-family: 'Playfair Display', serif;
+	font-size: large;
+	}
+  .anchor{
+margin: 40px;  }
+
+.link{
+  font-size:25px;
+  font-weight:300;
+  text-align:center;
+  position:relative;
+  height:60px;
+  line-height:40px;
+  margin-top:10px;
+  overflow:hidden;
+  width:90%;
+ 
+  cursor:pointer;
+  padding: 50px;
+  margin: 60px;
+  padding-left: 0px;
+  margin-left: 0px;
+}

@@ -31,26 +31,23 @@ export class ResOfSearchComponent implements OnInit {
 model= new SearchModel([],0,0)
   ngOnInit(): void {
     
-    this.http.post<any>("http://localhost:8080/search",{})
+    this.http.post<any>("http://:8080/search",{})
     .subscribe(
       (data) =>{
-        console.log('success is success successsss',data);
          this.cardss=data.rows
-         console.log('this.cards',this.cardss)
     },
       err => console.log('error azertyuio is error!',err)
     )
   }
 
   addFav(event: any, index: number){
-  this.http.post<any>("http://localhost:8080/add_favourite",{})
+  this.http.post<any>("https://mcec-server2.herokuapp.com/add_favourite",{})
   .subscribe(
     (data) =>{
 
 this.clicked[index] = true;
-console.log('add to fav',this.clicked[index])
   },
-    err => console.log('error azertyuio is error!',err)
+    err => console.log('error is error!',err)
   )
   }
 }

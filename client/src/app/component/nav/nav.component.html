@@ -4,21 +4,18 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
       <img
-      src="https://roudeinabentrad.files.wordpress.com/2021/03/mi-casa-es-tu-casa.png"
-      height="200px"
-      width="220px"
+      src="http://res.cloudinary.com/roudeinamysplash/image/upload/v1621093278/gwrsugg4bbodvx8dkls7.png"
+      height="210px"
+      width="190px"
     />
-    <mat-toolbar>Menu</mat-toolbar>
-
-    <mat-nav-list>
-      <a mat-list-item routerLink="/">Home</a>
-      
-      <a mat-list-item   *ngIf="!isLoggedIn" routerLink="/register">Register</a>
-      <a mat-list-item   *ngIf="!isLoggedIn" routerLink="/login">Login</a>
-      <a mat-list-item  *ngIf="isLoggedIn" (click)="logout()" routerLink="/">LogOut</a>
-      <a mat-list-item   *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
-      <a mat-list-item   *ngIf="isLoggedIn" routerLink="/becomeAhost">Become a host?</a>
-      <a mat-list-item *ngIf="isLoggedIn" href="/search">Search</a>
+    <mat-nav-list  >
+      <a class="allCard link text" mat-list-item routerLink="/">Home</a>
+      <a class="allCard link text"  mat-list-item   *ngIf="!isLoggedIn" routerLink="/register">Register</a>
+      <a class="allCard link text" mat-list-item   *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+      <a class="allCard link text" mat-list-item  *ngIf="isLoggedIn" (click)="logout()" routerLink="/">LogOut</a>
+      <a class="allCard link text" mat-list-item   *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
+      <a class="allCard link text" mat-list-item   *ngIf="isLoggedIn" routerLink="/becomeAhost">Become a host?</a>
+      <a class="allCard link text" mat-list-item *ngIf="isLoggedIn" href="/search">Search</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -31,7 +28,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>MCEC</span>
+      <span class="allCard" >Enjoy the hospitality ...</span>
       <span style="flex:auto;"></span>
       <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before">
         <mat-icon>bedtime</mat-icon>

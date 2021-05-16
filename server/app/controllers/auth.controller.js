@@ -53,9 +53,7 @@ exports.signin = (req, res) => {
         });
       }
       /////
-      console.log('connectedId: ',connectedId)
       connectedId = user.id
-      console.log('id stored: ',connectedId)
       ////
       var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400 // 24 hours

@@ -281,7 +281,7 @@ export class FilterComponent implements OnInit {
 
   getInfos() {
     this.http
-      .post('http://localhost:8080/current_user', {
+      .post('https://mcec-server2.herokuapp.com/current_user', {
         email: this.currentUser.email,
       })
       .subscribe(
@@ -292,11 +292,9 @@ export class FilterComponent implements OnInit {
       );
   }
   search() {
-    //console.log('data to be sent from filter', this.filtred);
-    this.http.post<any>('http://localhost:8080/search', this.filtred)
+    this.http.post<any>('https://mcec-server2.herokuapp.com/search', this.filtred)
     .subscribe(
       (data) => {
-        // console.log('success', data.rows);
         this.cardss = data.rows;
       },
       (err) => console.log('error!', err)
@@ -307,16 +305,15 @@ export class FilterComponent implements OnInit {
   }
   addFav(event: any, index: number) {
     this.http
-      .post<any>('http://localhost:8080/add_favourite', {
+      .post<any>('https://mcec-server2.herokuapp.com/add_favourite', {
         userId: this.currentId,
         favId: this.cardss[index].id,
       })
       .subscribe(
         (data) => {
           this.clicked[index] = true;
-          console.log('add to fav', data);
         },
-        (err) => console.log('error azertyuio is error!', err)
+        (err) => console.log('error is error!', err)
       );
   }
 }

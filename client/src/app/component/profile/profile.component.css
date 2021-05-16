@@ -73,5 +73,16 @@ input {
 	margin-right: 10px;
 }
 
-body { margin: 0; font-family: Garamond, "Helvetica Neue", sans-serif; }
-
+.headerI{
+	font-family: 'Galdeano', sans-serif;
+	font-family: 'Playfair Display', serif;
+	font-size: xx-large;
+	}
+	.allCard{
+	font-family: 'Galdeano', sans-serif;
+	font-family: 'Playfair Display', serif;
+	font-size: large;
+	}
+	.btn{
+		font-size: small;
+	}

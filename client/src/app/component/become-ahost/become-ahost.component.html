@@ -1,5 +1,5 @@
-<div class="card mx-auto mt-3" style="max-width: 900px">
-    <div class="card-header text-center">Filter By Preferences!</div>
+<mat-card class=" mx-auto mt-5 allCard" style="width: 90%;" >
+    <div class="card-header text-center  mt-4 mb-5 headerI" color="primary">Want to become a host?</div>
     <form
       name="form"
       class="mt-2 mr-4"
@@ -7,10 +7,11 @@
     >
       <div class="row">
         <div class="col-6">
-          <label class="ml-3" id="radio-group-label">Is your room : </label>
+          <label class="ml-3 allCard" id="radio-group-label">Is your room : </label>
         </div>
-        <div class="col-6">
+        <div class="col-6 ">
           <mat-radio-group
+          class="allCard"
             aria-label="Select an option"
             required
             #room_space="ngModel"
@@ -18,22 +19,23 @@
             ngModel
             [(ngModel)]="hostModel.room_space"
           >
-            <mat-radio-button value="shared">Shared</mat-radio-button>
-            <mat-radio-button value="private">Private</mat-radio-button>
+            <mat-radio-button class="allCard" value="shared">Shared</mat-radio-button>
+            <mat-radio-button class="allCard" value="private">Private</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
 
-      
+<br/>      
   
       <div class="row">
         <div class="col-6">
-          <label class="ml-3" id="radio-group-label"
+          <label class="ml-3 allCard" id="radio-group-label"
             >Is your room is occupied now?</label
           >
         </div>
         <div class="col-6">
           <mat-radio-group
+          class="allCard"
             aria-label="Select an option"
             required
             #occupied="ngModel"
@@ -41,15 +43,16 @@
             ngModel
             [(ngModel)]="hostModel.occupied"
           >
-            <mat-radio-button value="occupied">Yes</mat-radio-button>
-            <mat-radio-button value="free">No</mat-radio-button>
+            <mat-radio-button class="allCard" value="occupied">Yes</mat-radio-button>
+            <mat-radio-button class="allCard" value="free">No</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
-  
+      <br/>      
+
       <div class="row">
         <div class="col-6">
-          <label class="ml-3" id="radio-group-label"
+          <label class="ml-3 allCard" id="radio-group-label"
             >Image of your room ?</label
           >
 
@@ -58,27 +61,30 @@
         <div class="col-6">
 
           <input
-          class="form-control form-control-sm"
+          class="form-control form-control-sm allCard"
             required
             type="file"
             name="image"
             (change)="selectFile($event)"
           />
         </div>
-        <div class="text-center">
+        <!-- <div class="text-center">
             <img class="img-fluid mx-auto d-block" id="output" [src]="url" alt="" height="200" width="200" />
-          </div>
+          </div> -->
       </div>
-  
-      <div class="card-footer mt-1 mx-auto text-center">
+      <br/>      
+
+      <mat-card-actions  class=" mt-1 mx-auto text-center">
         <button
-        class="btn btn-primary"
           type="submit"
-          [disabled]="hostForm.form.invalid"
+          mat-raised-button
+          color="primary"
+         class="allCard btn"
+         [disabled]="hostForm.form.invalid"
         >
-          Submit
+        Submit
         </button>
-      </div>
+      </mat-card-actions>
     </form>
     <div *ngIf="!show">
         <div style="text-align: center">
@@ -87,4 +93,4 @@
         </div>
       </div>
       
-  </div>
+  </mat-card>

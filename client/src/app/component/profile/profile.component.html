@@ -1,83 +1,242 @@
-
-<div class="card mx-auto mt-3" style="max-width: 1200px" *ngIf="currentUser ">
-  <div class="card-header text-center mb-4"> <strong>{{ currentUser.username}} </strong>'s Profile</div>
-
-
-
-
-  <div class='text-center'>
-    <img [src]="url" alt="ProfilePicture" class="card-img-top" (click)="changeImg()"/>
-    <input         
-    type="file" (change)="selectFile($event)" *ngIf="imgChange" />
+<!-- infos part -->
+<mat-card
+class=" mx-auto mt-3 " style="width: 90%;"
+  *ngIf="currentUser"
+>
+  <mat-card-title class="card-header text-center mb-4 headerI">
+    <strong>{{ currentUser.username }} </strong>'s Profile
+  </mat-card-title>
+  <div class="text-center">
+    <img
+      mat-card-avatar
+      src="{{ currentUser.profile_picture }}"
+      alt="ProfilePicture"
+      class="card-img-top"
+      (click)="changeImg()"
+    />
+    <input type="file" (change)="selectFile($event)" *ngIf="imgChange" />
   </div>
 
-  <div class="small-container">
+  <div class="small-container allCard">
     <span class="span">Email</span>
-    <input type="text" placeholder="{{currentUser.email}}" [disabled]="notEdit" [(ngModel)] ="currentUser.email" />
-    <button class="btn btn-primary" color="primary" (click)="clickEdit()">EDIT</button>
+    <input
+      type="text"
+      placeholder="{{ currentUser.email }}"
+      [disabled]="notEdit"
+      [(ngModel)]="currentUser.email"
+    />
+    <button mat-raised-button
+    color="primary"
+    class="btn allCard" (click)="clickEdit()">
+      EDIT
+    </button>
   </div>
 
-  <div class="small-container">
+  <div class="small-container allCard">
     <span>Age</span>
-    <input type="number" placeholder="{{currentUser.age}}" [disabled]="notEdit" min="18" max="80" [(ngModel)] ="currentUser.age" />
-    <button color="primary" class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+    <input
+      type="number"
+      placeholder="{{ currentUser.age }}"
+      [disabled]="notEdit"
+      min="18"
+      max="80"
+      [(ngModel)]="currentUser.age"
+    />
+    <button mat-raised-button
+    color="primary"
+    class="btn allCard" (click)="clickEdit()">
+      EDIT
+    </button>
   </div>
 
-  <!-- <div class="small-container">
-    <span>Gender</span>
-    <input type="text" placeholder="{{currentUser.gender}}" [disabled]="notEdit" />
-    <button class="btn btn-primary" (click)="clickEdit()">EDIT</button>
-  </div> -->
-
-  <div class="small-container">
+  <div class="small-container allCard">
     <span>Nationality</span>
-    <input type="text" placeholder="{{currentUser.nationality}}" [disabled]="notEdit" [(ngModel)] ="currentUser.nationality"/>
-    <button class="btn btn-primary" color="primary">EDIT</button>
+    <input
+      type="text"
+      placeholder="{{ currentUser.nationality }}"
+      [disabled]="notEdit"
+      [(ngModel)]="currentUser.nationality"
+    />
+    <button mat-raised-button
+    color="primary"
+    class="btn allCard" (click)="clickEdit()">
+      EDIT
+    </button>
   </div>
 
-  <div class="small-container">
+  <div class="small-container allCard">
     <span>Contact</span>
-    <input type="text" placeholder="{{currentUser.contact}}" [disabled]="notEdit" [(ngModel)] ="currentUser.contact"/>
-    <button class="btn btn-primary" color="primary" (click)="clickEdit()">EDIT</button>
+    <input
+      type="text"
+      placeholder="{{ currentUser.contact }}"
+      [disabled]="notEdit"
+      [(ngModel)]="currentUser.contact"
+    />
+    <button mat-raised-button
+    color="primary"
+    class="btn allCard" (click)="clickEdit()">
+      EDIT
+    </button>
   </div>
-  <hr/>
-  <h1 *ngIf="verifyHost()">Welcome as a HOST</h1>
+  <hr />
+  <!-- favorites part -->
+  <!-- <mat-grid-list cols="4" rowHeight="200px">
+    <mat-grid-tile
+        *ngFor="let favorite of favorites"
+        cols="2" rowHeight="2:1"
+      >
+      <mat-card>
+        <mat-card-subtitle>{{favorite.username}}</mat-card-subtitle>
+        <img mat-card-avatar src="{{favorite.profile_picture }}" style="height: 30px; width: 30px;"/>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list> -->
+  <mat-card-title class="card-header text-center mb-4 headerI">
+    <strong>{{ currentUser.username }} </strong>'s favorites
+  </mat-card-title>
+  <mat-accordion *ngFor="let favorite of favorites">
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <img
+            mat-card-avatar
+            src="{{ favorite.profile_picture }}"
+            style="height: 30px; width: 30px"
+          />
+        </mat-panel-title>
+        <mat-panel-title class="allCard">{{favorite.username}}</mat-panel-title>
+        <mat-panel-title class="allCard">{{favorite.nationality}}</mat-panel-title>
+        <mat-panel-title class="allCard">{{favorite.age}}</mat-panel-title>
+        <!-- <mat-panel-description>
+          <button
+            class="pull-right"
+            mat-icon-button
+            color="warn"
+            aria-label="heart icon"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <div
+        class="text-center allCard" 
+        style="color: gray; font-size: larger; font-weight: bolder"
+      >
+        <p>
+          Room space is {{ favorite.room_space }} and {{ favorite.status }} .
+        </p>
 
+        <img mat-card-sm-image src="{{ favorite.room_picture }}" />
+        <!-- <button
+        class="pull-right"
+        mat-icon-button
+        color="warn"
+        aria-label="heart icon"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button> -->
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 
-  <div class="small-container" *ngIf="verifyHost()">
-    <span>Room Space</span>
-    <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
-    <mat-form-field appearance="fill" > 
-      <mat-label>{{currentUser.room_space}}</mat-label>
-      <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.room_space">
-        <mat-option >Shared</mat-option>
-        <mat-option >Private</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button color="primary" class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+  <hr />
+  <!-- host part -->
+  <div class="card-header text-center mb-4 mt-2 headerI" *ngIf="isHost">
+    <strong>{{ currentUser.username }}</strong
+    >, You are a host, Do you want to update your infos?
+  </div>
+  <span class="allCard">Status of your room :</span>
+  <div class="small-container allCard" *ngIf="isHost">
+    <input
+      type="text"
+      placeholder="{{ currentUser.status }}"
+      [disabled]="notEdit"
+      *ngIf="!notEdit"
+    />
+    <select
+      class="form-select form-select-sm ml-5 mr-5 text-center"
+      aria-label="status"
+      *ngIf="notEdit"
+    >
+      <option selected [(ngModel)]="currentUser.status">
+        Current: {{ currentUser.status }}
+      </option>
+      <option value="occupied">Occupied</option>
+      <option value="free">Free</option>
+    </select>
+    <button  mat-raised-button
+    color="primary"
+    class="btn allCard" (click)="clickEdit()">
+      EDIT
+    </button>
   </div>
 
-  <div class="small-container" *ngIf="verifyHost()">
-    <span>Status</span>
-    <!-- <input type="text" placeholder="{{currentUser.room_space}}" [disabled]="notEdit" /> -->
-    <mat-form-field appearance="fill" >
-      <mat-label>{{currentUser.status}}</mat-label>
-      <mat-select [disabled]="notEdit" [(ngModel)] ="currentUser.status">
-        <mat-option >Occupied</mat-option>
-        <mat-option >Free</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button color="primary" class="btn btn-primary" (click)="clickEdit()">EDIT</button>
+  <div class="small-container allCard" *ngIf="isHost">
+    <input
+      type="text"
+      placeholder="{{ currentUser.room_space }}"
+      [disabled]="notEdit"
+      *ngIf="!notEdit"
+    />
+    <select
+      class="form-select form-select-sm ml-5 mr-5 text-center"
+      aria-label=".form-select-sm example"
+      *ngIf="notEdit"
+    >
+      <option selected [(ngModel)]="currentUser.room_space">
+        Current: {{ currentUser.room_space }}
+      </option>
+      <option value="shared">Shared</option>
+      <option value="private">Private</option>
+    </select>
+    <button         mat-raised-button
+    color="primary"
+    class="btn allCard" (click)="clickEdit()">
+      EDIT
+    </button>
   </div>
 
-  <div class="small-container" *ngIf="verifyHost()">
-    <span>Room Picture</span>
-    <img class="room-picture" [src]="url2" alt="ProfilePicture" (click)="changeImg2()"/>
-    <input type="file" (change)="selectFile2($event)" *ngIf="imgChange2" />
+  <div class="small-container allCard" *ngIf="isHost">
+    <div class="input-group ml-5">
+      <label class="input-group-text" for="inputGroupFile01"
+        >Room Picture</label
+      >
+      <input
+        type="file"
+        class="form-control"
+        id="inputGroupFile01"
+        (change)="selectFile2($event)"
+        *ngIf="imgChange2 && notEdit"
+      />
+      <button  mat-raised-button
+      color="primary"
+      class="btn allCard" (click)="clickEdit()">
+        EDIT
+      </button>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <img
+      mat-card-image
+      class="room-picture"
+      [src]="currentUser.room_picture"
+      alt="ProfilePicture"
+      (click)="changeImg2()"
+    />
   </div>
 
   <div class="card-footer mt-2 mb-2 mx-auto text-center">
-    <button color="primary" class="btn btn-primary " *ngIf="toSubmit || imgChange || imgChange2" (click)="onSubmit()">Update</button>
+    <button
+    mat-raised-button
+    color="primary"
+    class="btn allCard"
+      *ngIf="toSubmit || imgChange || imgChange2"
+    >
+      Update
+    </button>
   </div>
-  <div *ngIf='show' style="text-align: center; color: grey;"> You Edit your profile succesfully</div>
-</div>
+  <div *ngIf="show" style="text-align: center; color: grey" class="allCard">
+    You Edit your profile succesfully
+  </div>
+</mat-card>

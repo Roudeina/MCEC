@@ -8,13 +8,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb',extended: true }));
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+
 
 
 ////////
@@ -28,6 +22,13 @@ db.sequelize.sync()
   console.log("error while connection to db",err)
 })
 
+res.header("Access-Control-Allow-Origin", "*");
+res.header(
+  "Access-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept"
+);
+next();
+});
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to 'mi casa es tu casa' application.This is a GET route for test" });

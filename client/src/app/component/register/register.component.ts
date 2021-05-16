@@ -54,11 +54,8 @@ export class RegisterComponent {
 
     this.authService.register(email,password,username,gender,age,nationality,contact).subscribe(
       data => {
-        console.log(data);
-        
         this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        
+        this.isSignUpFailed = false;   
       },
       err => {
         this.errorMessage = err.error.message;

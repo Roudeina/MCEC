@@ -20,59 +20,52 @@ export class ProfileComponent implements OnInit {
   constructor(private token: TokenStorageService, private http: HttpClient) {}
   isHost = false;
   show = false;
-  currentUser = this.token.getUser();
+  currentUserToken = this.token.getUser();
   currentUserId ;
+  currentUser;
+  favorites;
 
   
   ngOnInit(): void {
-    //console.log('azerty',this.currentUser)
     this.getInfos()
-    this.getFav()
-
-   // console.log('current_user', this.currentId);
-
-    //console.log('heool', this.currentUser);
     this.url = this.currentUser.profile_picture;
     this.url2 = this.currentUser.room_picture;
-    // console.log('this.currentIdinit', this.currentId);
-
   }
 
 
   getInfos() {
     
       this.http
-      .post('http://localhost:8080/current_user', {
-        email: this.currentUser.email,
+      .post('https://mcec-server2.herokuapp.com/current_user', {
+        email: this.currentUserToken.email,
       })
       .subscribe(
       (data: any) => {
           this.currentUserId = data.id;
+          this.currentUser= data
+          this.verifyHost()
+          this.getFav()
         },
       (err) => console.log('error getting user infos!', err)
       );
-      console.log('this.currentUserId', this.currentUserId);
-
-
-
-
-
   };
 
   getFav() {
-    // console.log('this.currentIdgetFav',this.currentId)
-
     this.http
-    .post('http://localhost:8080/display_favourite', {
-      // currentId: this.currentId,
+    .post('https://mcec-server2.herokuapp.com/display_favourite', {
+      currentId: this.currentUserId,
     })
     .subscribe(
       (data: any) => {
-        console.log('current_fav', data);
+        this.favorites=data
       },
       (err) => console.log('error getting user favorite', err)
     );
   };
+
+  removeFromFav(){
+    
+  }
 
   clickEdit() {
     this.notEdit = !this.notEdit;
@@ -101,7 +94,6 @@ export class ProfileComponent implements OnInit {
     if (this.currentUser.guest_or_host === 'host') {
       this.isHost = true;
     }
-    return this.isHost;
   }
 
   selectFile2(event) {
@@ -115,16 +107,14 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('DATA Updated', this.currentUser);
-
     this.http
-      .post<any>('http://localhost:8080/edit_profile', '{"contact":"fbbbbbb"}')
+      .post<any>('https://mcec-server2.herokuapp.com/edit_profile',  this.currentUser)
 
       .subscribe(
-        (data) => console.log('success', data),
+        (data) => console.log('success!', data),
         (err) => console.log('error!', err)
       );
     this.show = true;
-    console.log('azerty', this.show);
+    //window.location.reload()
   }
 }

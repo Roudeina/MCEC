@@ -1,3 +1,3 @@
 module.exports = {
-  secret: "mcec-secret-key"
+  secret: process.env.SECRET_KEY
 };

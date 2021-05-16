@@ -52,7 +52,6 @@ app.post("/become_a_host", (request, response) => {
 
 app.post('/search', function(request, response) {
 
- // console.log('/search request body',Object.entries(request.body))
   let conditions = Object.entries(request.body).filter(x=>(x[1]!=='')) // keeping just the changed input 
    // updating the filterBy based on the conditions
 
@@ -66,30 +65,24 @@ app.post('/search', function(request, response) {
 
   query.where = filterBy
   query.attributes = ['id','username','gender','age','nationality','profile_picture','room_space','contact','room_picture']
- // console.log("query.attributes",query.attributes)
 
 
 //////////////// return the number of documents satisfy the query
 
 db.users.findAndCountAll(query).then(data => {
-     // console.log('searching results',data)
       response.send(data)
     }).catch(err => {
-     // console.log('searching failed')
       response.send(err)
     });
   })
   /////////////////////////////////////////////////////////////////////////
   app.post('/current_user', function(request, response) {
-//console.log('req',request.body)    
     
     
     const project =  db.users.findOne({ where: {email:request.body.email} })
     .then(data => {
-      //console.log('current_user',data)
       response.send(data)
     }).catch(err => {
-     // console.log('searching failed')
       response.send(err)
     });
 
@@ -124,8 +117,6 @@ app.post('/remove_favourite', function(request, response) {
   const favouriteUser = {
     id : request.body.favouriteUserId
   }
-  console.log('connectedId: ',connectedId)
-  console.log('favourite host: ',favouriteUser.id)
   db.favourite_hosts.destroy({
     where: {
       user_id: connectedId,
@@ -143,11 +134,9 @@ app.post('/remove_favourite', function(request, response) {
 /////////////////////////////////////////////////////////////////////// display favourite contacts list 
 
 app.post('/display_favourite', function(request, response) {
-  console.log('connectedId: ',request.body.currentId)
   let queryStr = 'SELECT * FROM users WHERE age = 25'
   db.favourite_hosts.findAll({ where: {user_id:request.body.currentId} })
   .then((res)=>{
-    console.log('favvvvvvvvvv',res)
         response.send(res)
       })
   .catch(err => {
@@ -158,13 +147,11 @@ app.post('/display_favourite', function(request, response) {
 //////////////////////////////////////////////////////////
 
 app.post("/edit_profile", async (req, res) => {
-  console.log("picture from ui ", req.body.profile_picture);
   // if (req.body.profile_picture) {
   //   const profile_picture = await cloudinary.uploader.upload(
   //     req.body.profile_picture
   //   );
   // }
-  // console.log("message of profile_picture", profile_picture);
   let arr = Object.entries(req.body);
   let arr1 = arr.filter((el) => {
     return (
@@ -182,7 +169,6 @@ app.post("/edit_profile", async (req, res) => {
   arr1.forEach((element) => {
     es[element[0]] = element[1];
   });
-  //console.log(es);
 
   db.users.update(es, { where: { id: connectedId } });
   res.send("message sent");

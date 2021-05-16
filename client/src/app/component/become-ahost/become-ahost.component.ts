@@ -44,14 +44,12 @@ export class BecomeAhostComponent  {
   }
 
   onSubmit(){
-    console.log('data to be sent',this.hostModel)
-    this._http.post<any>('http://localhost:8080/become_a_host',this.hostModel)
+    this._http.post<any>('https://mcec-server2.herokuapp.com/become_a_host',this.hostModel)
     .subscribe(
-      data =>console.log('success',data),
+      data =>console.log('success'),
       err => console.log('error!',err)
     )
     this.token.getUser().guest_or_host = "host"
-    console.log('qsdfghjk',this.currentUser.guest_or_host)
     this.show=false
   }
   }

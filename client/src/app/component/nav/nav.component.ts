@@ -34,6 +34,5 @@ export class NavComponent {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
-  }
+    window.location.assign("/")  }
 }

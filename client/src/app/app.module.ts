@@ -22,6 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 
@@ -78,7 +80,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSlideToggleModule,
     MatPaginatorModule,
     MatSelectModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatExpansionModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
